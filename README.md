@@ -14,7 +14,7 @@ go get -u github.com/go-swagger/go-swagger/cmd/swagger@v0.27.0
 
 ```bash
 # server side
-swagger generate server -a gpsviewer -A gpsviewer --exclude-main --strict-additional-properties -t server/gen f ./swagger.yaml
+swagger generate server -a gpsviewer -A gpsviewer --exclude-main --strict-additional-properties -t server/gen -f ./swagger.yaml
 # client side
-swagger generate client -a gpsviewer -A gpsviewer --strict-additional-properties -t client/gen f ./swagger.yaml
+swagger generate client -a gpsviewer -A gpsviewer --strict-additional-properties -t client/gen -f ./swagger.yaml
 ```
