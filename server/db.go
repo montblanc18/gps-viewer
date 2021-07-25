@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 
@@ -12,28 +13,42 @@ import (
 )
 
 var (
-	gdb      *dynamo.DB
-	region   string
-	gpsTable string
+	gdb            *dynamo.DB
+	region         string
+	deviceGpsTable string
 )
 
 func init() {
 
 	region = os.Getenv("AWS_REGION")
 
-	gpsTable = os.Getenv("DYNAMO_TABLE_gps")
-	if gpsTable == "" {
-		log.Fatal("missing env variable: DYNAMO_TABLE_USERS")
+	deviceGpsTable = os.Getenv("DYNAMO_TABLE_DEVICE_GPS")
+	if deviceGpsTable == "" {
+		log.Fatal("missing env variable: DYNAMO_TABLE_DEVICE_GPS")
 	}
 
-	gdb = dynamo.New(session.Must(session.NewSession(&aws.Config{
-		Region: aws.String(region),
-	})))
+	dbEndpoint := os.Getenv("DYNAMO_ENDPOINT")
+	if dbEndpoint != "" {
+		fmt.Printf("DYNAMO_ENDPOINT is set. %s", dbEndpoint)
+		sess := session.Must(session.NewSessionWithOptions(session.Options{
+			Profile:           "local",
+			SharedConfigState: session.SharedConfigEnable,
+			Config: aws.Config{
+				Endpoint: aws.String(dbEndpoint),
+			},
+		}))
+		gdb = dynamo.New(sess)
+	} else {
+		fmt.Printf("DYNAMO_ENDPOINT is not set.")
+		gdb = dynamo.New(session.Must(session.NewSession(&aws.Config{
+			Region: aws.String(region),
+		})))
+	}
 }
 
 func fetchGpsById(ctx context.Context, deviceID string) (models.DeviceGPS, error) {
 	var resp models.DeviceGPS
-	err := gdb.Table(gpsTable).Get("device_id", deviceID).OneWithContext(ctx, &resp)
+	err := gdb.Table(deviceGpsTable).Get("device_id", deviceID).OneWithContext(ctx, &resp)
 	if err != nil {
 		return resp, err
 	}

@@ -1,0 +1,19 @@
+{
+    "TableName": "local_device_gps",
+    "KeySchema": [
+        {
+            "AttributeName": "device_id",
+            "KeyType": "HASH"
+        }
+    ],
+    "AttributeDefinitions": [
+        {
+            "AttributeName": "device_id",
+            "AttributeType": "S"
+        }
+    ],
+    "ProvisionedThroughput": {
+        "WriteCapacityUnits": 1,
+        "ReadCapacityUnits": 1
+    }
+}
