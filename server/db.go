@@ -3,8 +3,9 @@ package server
 import (
 	"context"
 	"fmt"
-	"log"
 	"os"
+
+	zlog "github.com/rs/zerolog/log"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -24,7 +25,7 @@ func init() {
 
 	deviceGpsTable = os.Getenv("DYNAMO_TABLE_DEVICE_GPS")
 	if deviceGpsTable == "" {
-		log.Fatal("missing env variable: DYNAMO_TABLE_DEVICE_GPS")
+		zlog.Fatal().Msgf("missing env variable: DYNAMO_TABLE_DEVICE_GPS")
 	}
 
 	dbEndpoint := os.Getenv("DYNAMO_ENDPOINT")
@@ -39,7 +40,7 @@ func init() {
 		}))
 		gdb = dynamo.New(sess)
 	} else {
-		fmt.Printf("DYNAMO_ENDPOINT is not set.")
+		zlog.Info().Msgf("DYNAMO_ENDPOINT is not set.")
 		gdb = dynamo.New(session.Must(session.NewSession(&aws.Config{
 			Region: aws.String(region),
 		})))

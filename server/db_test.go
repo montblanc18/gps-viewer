@@ -2,7 +2,6 @@ package server
 
 import (
 	"context"
-	"fmt"
 	"os/exec"
 	"strings"
 	"testing"
@@ -37,8 +36,7 @@ func TestFetchGpsById(t *testing.T) {
 			cmdExec(t, tt.cmds)
 			got, err := fetchGpsById(ctx, tt.deviceID)
 			if err != tt.wantErr {
-				//log.Fatalf(err)
-				fmt.Printf("%v", err)
+				t.Fatalf("%v", err)
 			}
 			if got != tt.wantDeviceGps {
 				t.Errorf("fetchGpsById() = %v, want %v", got, tt.wantDeviceGps)

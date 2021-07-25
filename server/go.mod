@@ -15,6 +15,6 @@ require (
 	github.com/go-openapi/validate v0.20.2
 	github.com/guregu/dynamo v1.10.4
 	github.com/jessevdk/go-flags v1.5.0
-	github.com/labstack/gommon v0.3.0
+	github.com/rs/zerolog v1.23.0
 	golang.org/x/net v0.0.0-20210716203947-853a461950ff
 )
