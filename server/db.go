@@ -47,7 +47,7 @@ func init() {
 	}
 }
 
-func fetchGpsById(ctx context.Context, deviceID string) (models.DeviceGPS, error) {
+func fetchGpsByDeviceId(ctx context.Context, deviceID string) (models.DeviceGPS, error) {
 	var resp models.DeviceGPS
 	err := gdb.Table(deviceGpsTable).Get("device_id", deviceID).OneWithContext(ctx, &resp)
 	if err != nil {

@@ -4,7 +4,7 @@ import "time"
 
 type deviceGPS struct {
 	deviceID   string    `dynamodbav:"device_id"`
-	deviceType string    `dynamodbav:"device_tyoe"`
+	deviceType string    `dynamodbav:"device_type"`
 	lng        float64   `dynamodbav:"lng"`
 	lat        float64   `dynamodbav:"lat"`
 	createdAt  time.Time `dynamodbav:"created_at"`

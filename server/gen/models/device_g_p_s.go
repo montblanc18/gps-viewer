@@ -21,9 +21,15 @@ import (
 // swagger:model DeviceGPS
 type DeviceGPS struct {
 
-	// id
+	// device Id
 	// Example: 99999
-	ID int64 `json:"id,omitempty"`
+	// Required: true
+	DeviceID *int64 `json:"deviceId"`
+
+	// device type
+	// Example: microcomputer
+	// Required: true
+	DeviceType *string `json:"deviceType"`
 
 	// lat
 	// Example: 34.69139
@@ -34,15 +40,26 @@ type DeviceGPS struct {
 	// Example: 135.18306
 	// Required: true
 	Lng *float64 `json:"lng"`
+
+	// recorded at
+	// Required: true
+	// Format: date-time
+	RecordedAt *strfmt.DateTime `json:"recordedAt"`
 }
 
 // UnmarshalJSON unmarshals this object while disallowing additional properties from JSON
 func (m *DeviceGPS) UnmarshalJSON(data []byte) error {
 	var props struct {
 
-		// id
+		// device Id
 		// Example: 99999
-		ID int64 `json:"id,omitempty"`
+		// Required: true
+		DeviceID *int64 `json:"deviceId"`
+
+		// device type
+		// Example: microcomputer
+		// Required: true
+		DeviceType *string `json:"deviceType"`
 
 		// lat
 		// Example: 34.69139
@@ -53,6 +70,11 @@ func (m *DeviceGPS) UnmarshalJSON(data []byte) error {
 		// Example: 135.18306
 		// Required: true
 		Lng *float64 `json:"lng"`
+
+		// recorded at
+		// Required: true
+		// Format: date-time
+		RecordedAt *strfmt.DateTime `json:"recordedAt"`
 	}
 
 	dec := json.NewDecoder(bytes.NewReader(data))
@@ -61,15 +83,25 @@ func (m *DeviceGPS) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	m.ID = props.ID
+	m.DeviceID = props.DeviceID
+	m.DeviceType = props.DeviceType
 	m.Lat = props.Lat
 	m.Lng = props.Lng
+	m.RecordedAt = props.RecordedAt
 	return nil
 }
 
 // Validate validates this device g p s
 func (m *DeviceGPS) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateDeviceID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDeviceType(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateLat(formats); err != nil {
 		res = append(res, err)
@@ -79,9 +111,31 @@ func (m *DeviceGPS) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateRecordedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *DeviceGPS) validateDeviceID(formats strfmt.Registry) error {
+
+	if err := validate.Required("deviceId", "body", m.DeviceID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceGPS) validateDeviceType(formats strfmt.Registry) error {
+
+	if err := validate.Required("deviceType", "body", m.DeviceType); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -97,6 +151,19 @@ func (m *DeviceGPS) validateLat(formats strfmt.Registry) error {
 func (m *DeviceGPS) validateLng(formats strfmt.Registry) error {
 
 	if err := validate.Required("lng", "body", m.Lng); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceGPS) validateRecordedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("recordedAt", "body", m.RecordedAt); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("recordedAt", "body", "date-time", m.RecordedAt.String(), formats); err != nil {
 		return err
 	}
 

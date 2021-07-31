@@ -10,6 +10,30 @@
         {
             "AttributeName": "device_id",
             "AttributeType": "S"
+        },
+        {
+            "AttributeName": "device_type",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "lat",
+            "AttributeType": "N"
+        },
+        {
+            "AttributeName": "lng",
+            "AttributeType": "N"
+        },
+        {
+            "AttributeName": "recorded_at",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "created_at",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "updated_at",
+            "AttributeType": "S"
         }
     ],
     "ProvisionedThroughput": {

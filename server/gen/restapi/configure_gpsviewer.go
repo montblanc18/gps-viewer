@@ -38,9 +38,9 @@ func configureAPI(api *gpsviewer.GpsviewerAPI) http.Handler {
 
 	api.JSONProducer = runtime.JSONProducer()
 
-	api.GetGpsByIDHandler = gpsviewer.GetGpsByIDHandlerFunc(server.GetDeviceId)
-	if api.UpdateGpsByIDHandler == nil {
-		api.UpdateGpsByIDHandler = gpsviewer.UpdateGpsByIDHandlerFunc(func(params gpsviewer.UpdateGpsByIDParams) middleware.Responder {
+	api.GetGpsByDeviceIDHandler = gpsviewer.GetGpsByDeviceIDHandlerFunc(server.GetGpsByDeviceId)
+	if api.RegisterGpsByDeviceIDHandler == nil {
+		api.RegisterGpsByDeviceIDHandler = gpsviewer.RegisterGpsByDeviceIDHandlerFunc(func(params gpsviewer.RegisterGpsByDeviceIDParams) middleware.Responder {
 			return middleware.NotImplemented("operation gpsviewer.UpdateGpsByID has not yet been implemented")
 		})
 	}

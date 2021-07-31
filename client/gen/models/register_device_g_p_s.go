@@ -16,10 +16,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DeviceGPS device g p s
+// RegisterDeviceGPS register device g p s
 //
-// swagger:model DeviceGPS
-type DeviceGPS struct {
+// swagger:model registerDeviceGPS
+type RegisterDeviceGPS struct {
 
 	// device Id
 	// Example: 99999
@@ -48,7 +48,7 @@ type DeviceGPS struct {
 }
 
 // UnmarshalJSON unmarshals this object while disallowing additional properties from JSON
-func (m *DeviceGPS) UnmarshalJSON(data []byte) error {
+func (m *RegisterDeviceGPS) UnmarshalJSON(data []byte) error {
 	var props struct {
 
 		// device Id
@@ -91,8 +91,8 @@ func (m *DeviceGPS) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// Validate validates this device g p s
-func (m *DeviceGPS) Validate(formats strfmt.Registry) error {
+// Validate validates this register device g p s
+func (m *RegisterDeviceGPS) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDeviceID(formats); err != nil {
@@ -121,7 +121,7 @@ func (m *DeviceGPS) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DeviceGPS) validateDeviceID(formats strfmt.Registry) error {
+func (m *RegisterDeviceGPS) validateDeviceID(formats strfmt.Registry) error {
 
 	if err := validate.Required("deviceId", "body", m.DeviceID); err != nil {
 		return err
@@ -130,7 +130,7 @@ func (m *DeviceGPS) validateDeviceID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DeviceGPS) validateDeviceType(formats strfmt.Registry) error {
+func (m *RegisterDeviceGPS) validateDeviceType(formats strfmt.Registry) error {
 
 	if err := validate.Required("deviceType", "body", m.DeviceType); err != nil {
 		return err
@@ -139,7 +139,7 @@ func (m *DeviceGPS) validateDeviceType(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DeviceGPS) validateLat(formats strfmt.Registry) error {
+func (m *RegisterDeviceGPS) validateLat(formats strfmt.Registry) error {
 
 	if err := validate.Required("lat", "body", m.Lat); err != nil {
 		return err
@@ -148,7 +148,7 @@ func (m *DeviceGPS) validateLat(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DeviceGPS) validateLng(formats strfmt.Registry) error {
+func (m *RegisterDeviceGPS) validateLng(formats strfmt.Registry) error {
 
 	if err := validate.Required("lng", "body", m.Lng); err != nil {
 		return err
@@ -157,7 +157,7 @@ func (m *DeviceGPS) validateLng(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DeviceGPS) validateRecordedAt(formats strfmt.Registry) error {
+func (m *RegisterDeviceGPS) validateRecordedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("recordedAt", "body", m.RecordedAt); err != nil {
 		return err
@@ -170,13 +170,13 @@ func (m *DeviceGPS) validateRecordedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this device g p s based on context it is used
-func (m *DeviceGPS) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this register device g p s based on context it is used
+func (m *RegisterDeviceGPS) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *DeviceGPS) MarshalBinary() ([]byte, error) {
+func (m *RegisterDeviceGPS) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -184,8 +184,8 @@ func (m *DeviceGPS) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *DeviceGPS) UnmarshalBinary(b []byte) error {
-	var res DeviceGPS
+func (m *RegisterDeviceGPS) UnmarshalBinary(b []byte) error {
+	var res RegisterDeviceGPS
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

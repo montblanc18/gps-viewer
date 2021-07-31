@@ -30,30 +30,30 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetGpsByID(params *GetGpsByIDParams, opts ...ClientOption) (*GetGpsByIDOK, error)
+	GetGpsByDeviceID(params *GetGpsByDeviceIDParams, opts ...ClientOption) (*GetGpsByDeviceIDOK, error)
 
-	UpdateGpsByID(params *UpdateGpsByIDParams, opts ...ClientOption) (*UpdateGpsByIDOK, error)
+	RegisterGpsByDeviceID(params *RegisterGpsByDeviceIDParams, opts ...ClientOption) (*RegisterGpsByDeviceIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  GetGpsByID Return device gps info
+  GetGpsByDeviceID Return device gps info
 */
-func (a *Client) GetGpsByID(params *GetGpsByIDParams, opts ...ClientOption) (*GetGpsByIDOK, error) {
+func (a *Client) GetGpsByDeviceID(params *GetGpsByDeviceIDParams, opts ...ClientOption) (*GetGpsByDeviceIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetGpsByIDParams()
+		params = NewGetGpsByDeviceIDParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "getGpsById",
+		ID:                 "getGpsByDeviceId",
 		Method:             "GET",
 		PathPattern:        "/gqs/{deviceId}",
 		ProducesMediaTypes: []string{"application/json; charset=utf-8"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &GetGpsByIDReader{formats: a.formats},
+		Reader:             &GetGpsByDeviceIDReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -65,33 +65,33 @@ func (a *Client) GetGpsByID(params *GetGpsByIDParams, opts ...ClientOption) (*Ge
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetGpsByIDOK)
+	success, ok := result.(*GetGpsByDeviceIDOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for getGpsById: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for getGpsByDeviceId: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-  UpdateGpsByID Update a device GPS by ID
+  RegisterGpsByDeviceID Register a device GPS by ID
 */
-func (a *Client) UpdateGpsByID(params *UpdateGpsByIDParams, opts ...ClientOption) (*UpdateGpsByIDOK, error) {
+func (a *Client) RegisterGpsByDeviceID(params *RegisterGpsByDeviceIDParams, opts ...ClientOption) (*RegisterGpsByDeviceIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateGpsByIDParams()
+		params = NewRegisterGpsByDeviceIDParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "updateGpsById",
+		ID:                 "registerGpsByDeviceId",
 		Method:             "POST",
 		PathPattern:        "/gqs/{deviceId}",
 		ProducesMediaTypes: []string{"application/json; charset=utf-8"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &UpdateGpsByIDReader{formats: a.formats},
+		Reader:             &RegisterGpsByDeviceIDReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -103,13 +103,13 @@ func (a *Client) UpdateGpsByID(params *UpdateGpsByIDParams, opts ...ClientOption
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*UpdateGpsByIDOK)
+	success, ok := result.(*RegisterGpsByDeviceIDOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for updateGpsById: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for registerGpsByDeviceId: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

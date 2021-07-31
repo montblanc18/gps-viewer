@@ -8,7 +8,7 @@ paths:
   "/gqs/{deviceId}":
     get:
       description: Return device gps info
-      operationId: getGpsById
+      operationId: getGpsByDeviceId
       produces:
         - application/json; charset=utf-8
       parameters:
@@ -24,8 +24,8 @@ paths:
           schema:
             "$ref": "#/definitions/DeviceGPS"
     post:
-      description: Update a device GPS by ID
-      operationId: updateGpsById
+      description: Register a device GPS by ID
+      operationId: registerGpsByDeviceId
       consumes:
         - application/json
       produces:
@@ -41,7 +41,7 @@ paths:
           in: body
           required: true
           schema:
-            "$ref": "#/definitions/updateDeviceGPS"
+            "$ref": "#/definitions/registerDeviceGPS"
       responses:
         "200":
           description: successful operation
@@ -51,13 +51,19 @@ definitions:
   DeviceGPS:
     type: object
     required:
+      - deviceId
+      - deviceType
       - lat
       - lng
+      - recordedAt
     properties:
-      id:
+      deviceId:
         type: integer
         format: int64
         example: 99999
+      deviceType:
+        type: string
+        example: microcomputer
       lat:
         type: number
         format: double
@@ -66,12 +72,25 @@ definitions:
         type: number
         format: double
         example: 135.18306
-  updateDeviceGPS:
+      recordedAt:
+        type: string
+        format: date-time
+  registerDeviceGPS:
     type: object
     required:
+      - deviceId
+      - deviceType
       - lat
       - lng
+      - recordedAt
     properties:
+      deviceId:
+        type: integer
+        format: int64
+        example: 99999
+      deviceType:
+        type: string
+        example: microcomputer
       lat:
         type: number
         format: double
@@ -80,3 +99,6 @@ definitions:
         type: number
         format: double
         example: 135.18306
+      recordedAt:
+        type: string
+        format: date-time

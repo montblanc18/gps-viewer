@@ -33,7 +33,7 @@ func init() {
         "produces": [
           "application/json; charset=utf-8"
         ],
-        "operationId": "getGpsById",
+        "operationId": "getGpsByDeviceId",
         "parameters": [
           {
             "type": "integer",
@@ -54,14 +54,14 @@ func init() {
         }
       },
       "post": {
-        "description": "Update a device GPS by ID",
+        "description": "Register a device GPS by ID",
         "consumes": [
           "application/json"
         ],
         "produces": [
           "application/json; charset=utf-8"
         ],
-        "operationId": "updateGpsById",
+        "operationId": "registerGpsByDeviceId",
         "parameters": [
           {
             "type": "integer",
@@ -76,7 +76,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/updateDeviceGPS"
+              "$ref": "#/definitions/registerDeviceGPS"
             }
           }
         ],
@@ -95,15 +95,22 @@ func init() {
     "DeviceGPS": {
       "type": "object",
       "required": [
+        "deviceId",
+        "deviceType",
         "lat",
-        "lng"
+        "lng",
+        "recordedAt"
       ],
       "properties": {
-        "id": {
+        "deviceId": {
           "type": "integer",
           "format": "int64",
           "example": 99999
         },
+        "deviceType": {
+          "type": "string",
+          "example": "microcomputer"
+        },
         "lat": {
           "type": "number",
           "format": "double",
@@ -113,16 +120,32 @@ func init() {
           "type": "number",
           "format": "double",
           "example": 135.18306
+        },
+        "recordedAt": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
-    "updateDeviceGPS": {
+    "registerDeviceGPS": {
       "type": "object",
       "required": [
+        "deviceId",
+        "deviceType",
         "lat",
-        "lng"
+        "lng",
+        "recordedAt"
       ],
       "properties": {
+        "deviceId": {
+          "type": "integer",
+          "format": "int64",
+          "example": 99999
+        },
+        "deviceType": {
+          "type": "string",
+          "example": "microcomputer"
+        },
         "lat": {
           "type": "number",
           "format": "double",
@@ -132,6 +155,10 @@ func init() {
           "type": "number",
           "format": "double",
           "example": 135.18306
+        },
+        "recordedAt": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     }
@@ -153,7 +180,7 @@ func init() {
         "produces": [
           "application/json; charset=utf-8"
         ],
-        "operationId": "getGpsById",
+        "operationId": "getGpsByDeviceId",
         "parameters": [
           {
             "type": "integer",
@@ -174,14 +201,14 @@ func init() {
         }
       },
       "post": {
-        "description": "Update a device GPS by ID",
+        "description": "Register a device GPS by ID",
         "consumes": [
           "application/json"
         ],
         "produces": [
           "application/json; charset=utf-8"
         ],
-        "operationId": "updateGpsById",
+        "operationId": "registerGpsByDeviceId",
         "parameters": [
           {
             "type": "integer",
@@ -196,7 +223,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/updateDeviceGPS"
+              "$ref": "#/definitions/registerDeviceGPS"
             }
           }
         ],
@@ -215,15 +242,22 @@ func init() {
     "DeviceGPS": {
       "type": "object",
       "required": [
+        "deviceId",
+        "deviceType",
         "lat",
-        "lng"
+        "lng",
+        "recordedAt"
       ],
       "properties": {
-        "id": {
+        "deviceId": {
           "type": "integer",
           "format": "int64",
           "example": 99999
         },
+        "deviceType": {
+          "type": "string",
+          "example": "microcomputer"
+        },
         "lat": {
           "type": "number",
           "format": "double",
@@ -233,16 +267,32 @@ func init() {
           "type": "number",
           "format": "double",
           "example": 135.18306
+        },
+        "recordedAt": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
-    "updateDeviceGPS": {
+    "registerDeviceGPS": {
       "type": "object",
       "required": [
+        "deviceId",
+        "deviceType",
         "lat",
-        "lng"
+        "lng",
+        "recordedAt"
       ],
       "properties": {
+        "deviceId": {
+          "type": "integer",
+          "format": "int64",
+          "example": 99999
+        },
+        "deviceType": {
+          "type": "string",
+          "example": "microcomputer"
+        },
         "lat": {
           "type": "number",
           "format": "double",
@@ -252,6 +302,10 @@ func init() {
           "type": "number",
           "format": "double",
           "example": 135.18306
+        },
+        "recordedAt": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     }

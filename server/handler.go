@@ -6,7 +6,7 @@ import (
 	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer"
 )
 
-func GetDeviceId(p gpsviewer.GetGpsByIDParams) middleware.Responder {
+func GetGpsByDeviceId(p gpsviewer.GetGpsByDeviceIDParams) middleware.Responder {
 	var resp *models.DeviceGPS
 	return gpsviewer.NewGetGpsByIDOK().WithPayload(resp)
 }

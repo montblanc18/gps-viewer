@@ -42,11 +42,11 @@ func NewGpsviewerAPI(spec *loads.Document) *GpsviewerAPI {
 
 		JSONProducer: runtime.JSONProducer(),
 
-		GetGpsByIDHandler: GetGpsByIDHandlerFunc(func(params GetGpsByIDParams) middleware.Responder {
-			return middleware.NotImplemented("operation GetGpsByID has not yet been implemented")
+		GetGpsByDeviceIDHandler: GetGpsByDeviceIDHandlerFunc(func(params GetGpsByDeviceIDParams) middleware.Responder {
+			return middleware.NotImplemented("operation GetGpsByDeviceID has not yet been implemented")
 		}),
-		UpdateGpsByIDHandler: UpdateGpsByIDHandlerFunc(func(params UpdateGpsByIDParams) middleware.Responder {
-			return middleware.NotImplemented("operation UpdateGpsByID has not yet been implemented")
+		RegisterGpsByDeviceIDHandler: RegisterGpsByDeviceIDHandlerFunc(func(params RegisterGpsByDeviceIDParams) middleware.Responder {
+			return middleware.NotImplemented("operation RegisterGpsByDeviceID has not yet been implemented")
 		}),
 	}
 }
@@ -84,10 +84,10 @@ type GpsviewerAPI struct {
 	//   - application/json
 	JSONProducer runtime.Producer
 
-	// GetGpsByIDHandler sets the operation handler for the get gps by Id operation
-	GetGpsByIDHandler GetGpsByIDHandler
-	// UpdateGpsByIDHandler sets the operation handler for the update gps by Id operation
-	UpdateGpsByIDHandler UpdateGpsByIDHandler
+	// GetGpsByDeviceIDHandler sets the operation handler for the get gps by device Id operation
+	GetGpsByDeviceIDHandler GetGpsByDeviceIDHandler
+	// RegisterGpsByDeviceIDHandler sets the operation handler for the register gps by device Id operation
+	RegisterGpsByDeviceIDHandler RegisterGpsByDeviceIDHandler
 
 	// ServeError is called when an error is received, there is a default handler
 	// but you can set your own with this
@@ -165,11 +165,11 @@ func (o *GpsviewerAPI) Validate() error {
 		unregistered = append(unregistered, "JSONProducer")
 	}
 
-	if o.GetGpsByIDHandler == nil {
-		unregistered = append(unregistered, "GetGpsByIDHandler")
+	if o.GetGpsByDeviceIDHandler == nil {
+		unregistered = append(unregistered, "GetGpsByDeviceIDHandler")
 	}
-	if o.UpdateGpsByIDHandler == nil {
-		unregistered = append(unregistered, "UpdateGpsByIDHandler")
+	if o.RegisterGpsByDeviceIDHandler == nil {
+		unregistered = append(unregistered, "RegisterGpsByDeviceIDHandler")
 	}
 
 	if len(unregistered) > 0 {
@@ -262,11 +262,11 @@ func (o *GpsviewerAPI) initHandlerCache() {
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
-	o.handlers["GET"]["/gqs/{deviceId}"] = NewGetGpsByID(o.context, o.GetGpsByIDHandler)
+	o.handlers["GET"]["/gqs/{deviceId}"] = NewGetGpsByDeviceID(o.context, o.GetGpsByDeviceIDHandler)
 	if o.handlers["POST"] == nil {
 		o.handlers["POST"] = make(map[string]http.Handler)
 	}
-	o.handlers["POST"]["/gqs/{deviceId}"] = NewUpdateGpsByID(o.context, o.UpdateGpsByIDHandler)
+	o.handlers["POST"]["/gqs/{deviceId}"] = NewRegisterGpsByDeviceID(o.context, o.RegisterGpsByDeviceIDHandler)
 }
 
 // Serve creates a http handler to serve the API over HTTP

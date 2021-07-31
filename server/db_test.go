@@ -34,7 +34,7 @@ func TestFetchGpsById(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			cmdExec(t, tt.cmds)
-			got, err := fetchGpsById(ctx, tt.deviceID)
+			got, err := fetchGpsByDeviceId(ctx, tt.deviceID)
 			if err != tt.wantErr {
 				t.Fatalf("%v", err)
 			}
