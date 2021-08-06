@@ -27,6 +27,7 @@ func TestFetchGpsById(t *testing.T) {
 			wantErr:       nil,
 			cmds: []string{
 				`aws --profile local --endpoint-url http://localhost:4566 dynamodb create-table --cli-input-json file://./testdata/schema/local_device_gps.json`,
+				`aws --profile local --endpoint-url http://localhost:4566 dynamodb batch-write-item --request-items file://./testdata/db/fetchGpsByDeviceId_0.json`,
 				`aws --profile local --endpoint-url http://localhost:4566 dynamodb delete-table --table local_device_gps`,
 			},
 		},
