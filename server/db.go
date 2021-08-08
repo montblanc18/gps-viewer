@@ -10,7 +10,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/guregu/dynamo"
-	"github.com/montblanc18/gps-viewer/server/gen/models"
 )
 
 var (
@@ -47,11 +46,15 @@ func init() {
 	}
 }
 
-func fetchGpsByDeviceId(ctx context.Context, deviceID string) (models.DeviceGPS, error) {
-	var resp models.DeviceGPS
-	err := gdb.Table(deviceGpsTable).Get("device_id", deviceID).OneWithContext(ctx, &resp)
+// 最新のGPS情報を取得する
+func fetchGpsByDeviceId(ctx context.Context, deviceID string) (DeviceGPS, error) {
+	var resps []DeviceGPS
+	var resp DeviceGPS
+	err := gdb.Table(deviceGpsTable).Get("device_id", deviceID).Order(dynamo.Descending).Limit(1).All(&resps)
 	if err != nil {
 		return resp, err
 	}
+	resp = resps[0]
+
 	return resp, nil
 }

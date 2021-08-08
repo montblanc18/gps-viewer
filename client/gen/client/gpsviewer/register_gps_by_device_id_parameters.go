@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/montblanc18/gps-viewer/client/gen/models"
 )
@@ -66,9 +65,7 @@ type RegisterGpsByDeviceIDParams struct {
 	Body *models.RegisterDeviceGPS
 
 	// DeviceID.
-	//
-	// Format: int64
-	DeviceID int64
+	DeviceID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -135,13 +132,13 @@ func (o *RegisterGpsByDeviceIDParams) SetBody(body *models.RegisterDeviceGPS) {
 }
 
 // WithDeviceID adds the deviceID to the register gps by device Id params
-func (o *RegisterGpsByDeviceIDParams) WithDeviceID(deviceID int64) *RegisterGpsByDeviceIDParams {
+func (o *RegisterGpsByDeviceIDParams) WithDeviceID(deviceID string) *RegisterGpsByDeviceIDParams {
 	o.SetDeviceID(deviceID)
 	return o
 }
 
 // SetDeviceID adds the deviceId to the register gps by device Id params
-func (o *RegisterGpsByDeviceIDParams) SetDeviceID(deviceID int64) {
+func (o *RegisterGpsByDeviceIDParams) SetDeviceID(deviceID string) {
 	o.DeviceID = deviceID
 }
 
@@ -159,7 +156,7 @@ func (o *RegisterGpsByDeviceIDParams) WriteToRequest(r runtime.ClientRequest, re
 	}
 
 	// path param deviceId
-	if err := r.SetPathParam("deviceId", swag.FormatInt64(o.DeviceID)); err != nil {
+	if err := r.SetPathParam("deviceId", o.DeviceID); err != nil {
 		return err
 	}
 

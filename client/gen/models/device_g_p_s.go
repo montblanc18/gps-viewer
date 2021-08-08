@@ -24,7 +24,7 @@ type DeviceGPS struct {
 	// device Id
 	// Example: 99999
 	// Required: true
-	DeviceID *int64 `json:"deviceId"`
+	DeviceID *string `json:"deviceId"`
 
 	// device type
 	// Example: microcomputer
@@ -54,7 +54,7 @@ func (m *DeviceGPS) UnmarshalJSON(data []byte) error {
 		// device Id
 		// Example: 99999
 		// Required: true
-		DeviceID *int64 `json:"deviceId"`
+		DeviceID *string `json:"deviceId"`
 
 		// device type
 		// Example: microcomputer

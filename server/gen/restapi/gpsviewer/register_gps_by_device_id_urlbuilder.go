@@ -10,13 +10,11 @@ import (
 	"net/url"
 	golangswaggerpaths "path"
 	"strings"
-
-	"github.com/go-openapi/swag"
 )
 
 // RegisterGpsByDeviceIDURL generates an URL for the register gps by device Id operation
 type RegisterGpsByDeviceIDURL struct {
-	DeviceID int64
+	DeviceID string
 
 	_basePath string
 	// avoid unkeyed usage
@@ -44,7 +42,7 @@ func (o *RegisterGpsByDeviceIDURL) Build() (*url.URL, error) {
 
 	var _path = "/gqs/{deviceId}"
 
-	deviceID := swag.FormatInt64(o.DeviceID)
+	deviceID := o.DeviceID
 	if deviceID != "" {
 		_path = strings.Replace(_path, "{deviceId}", deviceID, -1)
 	} else {

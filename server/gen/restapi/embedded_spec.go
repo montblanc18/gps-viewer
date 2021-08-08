@@ -36,8 +36,7 @@ func init() {
         "operationId": "getGpsByDeviceId",
         "parameters": [
           {
-            "type": "integer",
-            "format": "int64",
+            "type": "string",
             "x-example": 99999,
             "name": "deviceId",
             "in": "path",
@@ -64,8 +63,7 @@ func init() {
         "operationId": "registerGpsByDeviceId",
         "parameters": [
           {
-            "type": "integer",
-            "format": "int64",
+            "type": "string",
             "x-example": 99999,
             "name": "deviceId",
             "in": "path",
@@ -103,8 +101,7 @@ func init() {
       ],
       "properties": {
         "deviceId": {
-          "type": "integer",
-          "format": "int64",
+          "type": "string",
           "example": 99999
         },
         "deviceType": {
@@ -138,8 +135,7 @@ func init() {
       ],
       "properties": {
         "deviceId": {
-          "type": "integer",
-          "format": "int64",
+          "type": "string",
           "example": 99999
         },
         "deviceType": {
@@ -183,8 +179,7 @@ func init() {
         "operationId": "getGpsByDeviceId",
         "parameters": [
           {
-            "type": "integer",
-            "format": "int64",
+            "type": "string",
             "x-example": 99999,
             "name": "deviceId",
             "in": "path",
@@ -211,8 +206,7 @@ func init() {
         "operationId": "registerGpsByDeviceId",
         "parameters": [
           {
-            "type": "integer",
-            "format": "int64",
+            "type": "string",
             "x-example": 99999,
             "name": "deviceId",
             "in": "path",
@@ -250,8 +244,7 @@ func init() {
       ],
       "properties": {
         "deviceId": {
-          "type": "integer",
-          "format": "int64",
+          "type": "string",
           "example": 99999
         },
         "deviceType": {
@@ -285,8 +278,7 @@ func init() {
       ],
       "properties": {
         "deviceId": {
-          "type": "integer",
-          "format": "int64",
+          "type": "string",
           "example": 99999
         },
         "deviceType": {
