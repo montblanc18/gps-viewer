@@ -54,7 +54,15 @@ func fetchGpsByDeviceId(ctx context.Context, deviceID string) (DeviceGPS, error)
 	if err != nil {
 		return resp, err
 	}
+	// 一件もなかった
+	if len(resps) == 0 {
+		return resp, dynamo.ErrNotFound
+	}
 	resp = resps[0]
 
 	return resp, nil
+}
+
+func insertGpsByDevice(ctx context.Context, gps DeviceGPS) error {
+	return gdb.Table(deviceGpsTable).Put(gps).RunWithContext(ctx)
 }
