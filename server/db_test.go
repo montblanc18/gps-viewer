@@ -69,7 +69,7 @@ func TestFetchGpsById(t *testing.T) {
 	}
 }
 
-func cmdExec(t *testing.T, cmds []string) error {
+func cmdExec(t *testing.T, cmds []string) {
 	t.Helper()
 	for _, cmd := range cmds {
 		t.Logf("[INFO] %s", cmd)
@@ -79,6 +79,4 @@ func cmdExec(t *testing.T, cmds []string) error {
 			t.Logf("[WARN] %s %v", cmd, err)
 		}
 	}
-	return nil
-
 }
