@@ -66,7 +66,7 @@ jobs:
           when: always
           command: |
             cd ./server
-            golangci-lint run --tests --disable-all --enable=govent --enable=errcheck --enable=staticcheck --enable=gosimple
+            golangci-lint run --tests --disable-all --enable=govet --enable=errcheck --enable=staticcheck --enable=gosimple
 
 workflows:
   workflow:
