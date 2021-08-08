@@ -8,5 +8,8 @@ import (
 
 func GetGpsByDeviceId(p gpsviewer.GetGpsByDeviceIDParams) middleware.Responder {
 	var resp *models.DeviceGPS
+
+	//ctx := p.HTTPRequest.Context()
+	//g, nil = fetchGpsByDeviceId(ctx, p.DeviceID)
 	return gpsviewer.NewGetGpsByIDOK().WithPayload(resp)
 }
