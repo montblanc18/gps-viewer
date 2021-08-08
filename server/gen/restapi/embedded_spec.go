@@ -49,6 +49,24 @@ func init() {
             "schema": {
               "$ref": "#/definitions/DeviceGPS"
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "当該データなし",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -79,10 +97,22 @@ func init() {
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/DeviceGPS"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           }
         }
@@ -121,6 +151,19 @@ func init() {
         "recordedAt": {
           "type": "string",
           "format": "date-time"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "エラーコード",
+          "type": "integer"
+        },
+        "message": {
+          "description": "エラーメッセージ",
+          "type": "string"
         }
       }
     },
@@ -192,6 +235,24 @@ func init() {
             "schema": {
               "$ref": "#/definitions/DeviceGPS"
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "当該データなし",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -222,10 +283,22 @@ func init() {
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/DeviceGPS"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           }
         }
@@ -264,6 +337,19 @@ func init() {
         "recordedAt": {
           "type": "string",
           "format": "date-time"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "エラーコード",
+          "type": "integer"
+        },
+        "message": {
+          "description": "エラーメッセージ",
+          "type": "string"
         }
       }
     },

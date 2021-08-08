@@ -32,7 +32,7 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	GetGpsByDeviceID(params *GetGpsByDeviceIDParams, opts ...ClientOption) (*GetGpsByDeviceIDOK, error)
 
-	RegisterGpsByDeviceID(params *RegisterGpsByDeviceIDParams, opts ...ClientOption) (*RegisterGpsByDeviceIDOK, error)
+	RegisterGpsByDeviceID(params *RegisterGpsByDeviceIDParams, opts ...ClientOption) (*RegisterGpsByDeviceIDCreated, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -78,7 +78,7 @@ func (a *Client) GetGpsByDeviceID(params *GetGpsByDeviceIDParams, opts ...Client
 /*
   RegisterGpsByDeviceID Register a device GPS by ID
 */
-func (a *Client) RegisterGpsByDeviceID(params *RegisterGpsByDeviceIDParams, opts ...ClientOption) (*RegisterGpsByDeviceIDOK, error) {
+func (a *Client) RegisterGpsByDeviceID(params *RegisterGpsByDeviceIDParams, opts ...ClientOption) (*RegisterGpsByDeviceIDCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRegisterGpsByDeviceIDParams()
@@ -103,7 +103,7 @@ func (a *Client) RegisterGpsByDeviceID(params *RegisterGpsByDeviceIDParams, opts
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RegisterGpsByDeviceIDOK)
+	success, ok := result.(*RegisterGpsByDeviceIDCreated)
 	if ok {
 		return success, nil
 	}

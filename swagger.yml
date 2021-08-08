@@ -22,6 +22,18 @@ paths:
           description: successful operationId
           schema:
             "$ref": "#/definitions/DeviceGPS"
+        "400":
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/Error"
+        "404":
+          description: 当該データなし
+          schema:
+            "$ref": "#/definitions/Error"
+        "500":
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/Error"
     post:
       description: Register a device GPS by ID
       operationId: registerGpsByDeviceId
@@ -41,10 +53,18 @@ paths:
           schema:
             "$ref": "#/definitions/registerDeviceGPS"
       responses:
-        "200":
+        "201":
           description: successful operation
           schema:
             "$ref": "#/definitions/DeviceGPS"
+        "400":
+          description: Bad Request
+          schema:
+            "$ref": "#/definitions/Error"
+        "500":
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/Error"
 definitions:
   DeviceGPS:
     type: object
@@ -98,3 +118,12 @@ definitions:
       recordedAt:
         type: string
         format: date-time
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        description: エラーコード
+      message:
+        type: string
+        description: エラーメッセージ

@@ -23,40 +23,116 @@ type RegisterGpsByDeviceIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *RegisterGpsByDeviceIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewRegisterGpsByDeviceIDOK()
+	case 201:
+		result := NewRegisterGpsByDeviceIDCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewRegisterGpsByDeviceIDBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 500:
+		result := NewRegisterGpsByDeviceIDInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
-// NewRegisterGpsByDeviceIDOK creates a RegisterGpsByDeviceIDOK with default headers values
-func NewRegisterGpsByDeviceIDOK() *RegisterGpsByDeviceIDOK {
-	return &RegisterGpsByDeviceIDOK{}
+// NewRegisterGpsByDeviceIDCreated creates a RegisterGpsByDeviceIDCreated with default headers values
+func NewRegisterGpsByDeviceIDCreated() *RegisterGpsByDeviceIDCreated {
+	return &RegisterGpsByDeviceIDCreated{}
 }
 
-/* RegisterGpsByDeviceIDOK describes a response with status code 200, with default header values.
+/* RegisterGpsByDeviceIDCreated describes a response with status code 201, with default header values.
 
 successful operation
 */
-type RegisterGpsByDeviceIDOK struct {
+type RegisterGpsByDeviceIDCreated struct {
 	Payload *models.DeviceGPS
 }
 
-func (o *RegisterGpsByDeviceIDOK) Error() string {
-	return fmt.Sprintf("[POST /gqs/{deviceId}][%d] registerGpsByDeviceIdOK  %+v", 200, o.Payload)
+func (o *RegisterGpsByDeviceIDCreated) Error() string {
+	return fmt.Sprintf("[POST /gqs/{deviceId}][%d] registerGpsByDeviceIdCreated  %+v", 201, o.Payload)
 }
-func (o *RegisterGpsByDeviceIDOK) GetPayload() *models.DeviceGPS {
+func (o *RegisterGpsByDeviceIDCreated) GetPayload() *models.DeviceGPS {
 	return o.Payload
 }
 
-func (o *RegisterGpsByDeviceIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *RegisterGpsByDeviceIDCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.DeviceGPS)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRegisterGpsByDeviceIDBadRequest creates a RegisterGpsByDeviceIDBadRequest with default headers values
+func NewRegisterGpsByDeviceIDBadRequest() *RegisterGpsByDeviceIDBadRequest {
+	return &RegisterGpsByDeviceIDBadRequest{}
+}
+
+/* RegisterGpsByDeviceIDBadRequest describes a response with status code 400, with default header values.
+
+Bad Request
+*/
+type RegisterGpsByDeviceIDBadRequest struct {
+	Payload *models.Error
+}
+
+func (o *RegisterGpsByDeviceIDBadRequest) Error() string {
+	return fmt.Sprintf("[POST /gqs/{deviceId}][%d] registerGpsByDeviceIdBadRequest  %+v", 400, o.Payload)
+}
+func (o *RegisterGpsByDeviceIDBadRequest) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *RegisterGpsByDeviceIDBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRegisterGpsByDeviceIDInternalServerError creates a RegisterGpsByDeviceIDInternalServerError with default headers values
+func NewRegisterGpsByDeviceIDInternalServerError() *RegisterGpsByDeviceIDInternalServerError {
+	return &RegisterGpsByDeviceIDInternalServerError{}
+}
+
+/* RegisterGpsByDeviceIDInternalServerError describes a response with status code 500, with default header values.
+
+Internal Server Error
+*/
+type RegisterGpsByDeviceIDInternalServerError struct {
+	Payload *models.Error
+}
+
+func (o *RegisterGpsByDeviceIDInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /gqs/{deviceId}][%d] registerGpsByDeviceIdInternalServerError  %+v", 500, o.Payload)
+}
+func (o *RegisterGpsByDeviceIDInternalServerError) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *RegisterGpsByDeviceIDInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

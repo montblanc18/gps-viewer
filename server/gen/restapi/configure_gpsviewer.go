@@ -14,7 +14,7 @@ import (
 	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer"
 )
 
-//go:generate swagger generate server --target ../../gen --name Gpsviewer --spec ../../../swagger.yaml --api-package gpsviewer --principal interface{} --exclude-main
+//go:generate swagger generate server --target ../../gen --name Gpsviewer --spec ../../../swagger.yml --api-package gpsviewer --principal interface{} --exclude-main
 
 func configureFlags(api *gpsviewer.GpsviewerAPI) {
 	// api.CommandLineOptionsGroups = []swag.CommandLineOptionsGroup{ ... }

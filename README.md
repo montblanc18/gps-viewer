@@ -23,13 +23,13 @@ go get -u github.com/go-swagger/go-swagger/cmd/swagger@v0.27.0
 ```bash
 make generate-swagger
 ## server side
-# swagger generate server -a gpsviewer -A gpsviewer --exclude-main --strict-additional-properties -t server/gen -f ./swagger.yaml
+# swagger generate server -a gpsviewer -A gpsviewer --exclude-main --strict-additional-properties -t server/gen -f ./swagger.yml
 ## client side
-# swagger generate client -a gpsviewer -A gpsviewer --strict-additional-properties -t client/gen -f ./swagger.yaml
+# swagger generate client -a gpsviewer -A gpsviewer --strict-additional-properties -t client/gen -f ./swagger.yml
 ```
 
 ## docker 
 
 ```bash
-docker-compose -f docker-compose.yaml up -d
+docker-compose -f docker-compose.yml up -d
 ```
