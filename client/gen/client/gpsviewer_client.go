@@ -9,6 +9,8 @@ import (
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/montblanc18/gps-viewer/client/gen/client/gps"
 )
 
 // Default gpsviewer HTTP client.
@@ -20,7 +22,7 @@ const (
 	DefaultHost string = "localhost"
 	// DefaultBasePath is the default BasePath
 	// found in Meta (info) section of spec file
-	DefaultBasePath string = "/"
+	DefaultBasePath string = "/gps-viewer/v1"
 )
 
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
@@ -53,7 +55,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Gpsviewer 
 
 	cli := new(Gpsviewer)
 	cli.Transport = transport
-	cli.Gpsviewer = gpsviewer.New(transport, formats)
+	cli.Gps = gps.New(transport, formats)
 	return cli
 }
 
@@ -98,7 +100,7 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // Gpsviewer is a client for gpsviewer
 type Gpsviewer struct {
-	Gpsviewer gpsviewer.ClientService
+	Gps gps.ClientService
 
 	Transport runtime.ClientTransport
 }
@@ -106,5 +108,5 @@ type Gpsviewer struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *Gpsviewer) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
-	c.Gpsviewer.SetTransport(transport)
+	c.Gps.SetTransport(transport)
 }

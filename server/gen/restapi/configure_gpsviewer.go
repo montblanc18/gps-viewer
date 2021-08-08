@@ -10,8 +10,8 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/middleware"
 
-	"github.com/montblanc18/gps-viewer/server"
 	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer"
+	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer/gps"
 )
 
 //go:generate swagger generate server --target ../../gen --name Gpsviewer --spec ../../../swagger.yml --api-package gpsviewer --principal interface{} --exclude-main
@@ -38,10 +38,14 @@ func configureAPI(api *gpsviewer.GpsviewerAPI) http.Handler {
 
 	api.JSONProducer = runtime.JSONProducer()
 
-	api.GetGpsByDeviceIDHandler = gpsviewer.GetGpsByDeviceIDHandlerFunc(server.GetGpsByDeviceId)
-	if api.RegisterGpsByDeviceIDHandler == nil {
-		api.RegisterGpsByDeviceIDHandler = gpsviewer.RegisterGpsByDeviceIDHandlerFunc(func(params gpsviewer.RegisterGpsByDeviceIDParams) middleware.Responder {
-			return middleware.NotImplemented("operation gpsviewer.UpdateGpsByID has not yet been implemented")
+	if api.GpsGetGpsByDeviceIDHandler == nil {
+		api.GpsGetGpsByDeviceIDHandler = gps.GetGpsByDeviceIDHandlerFunc(func(params gps.GetGpsByDeviceIDParams) middleware.Responder {
+			return middleware.NotImplemented("operation gps.GetGpsByDeviceID has not yet been implemented")
+		})
+	}
+	if api.GpsRegisterGpsByDeviceIDHandler == nil {
+		api.GpsRegisterGpsByDeviceIDHandler = gps.RegisterGpsByDeviceIDHandlerFunc(func(params gps.RegisterGpsByDeviceIDParams) middleware.Responder {
+			return middleware.NotImplemented("operation gps.RegisterGpsByDeviceID has not yet been implemented")
 		})
 	}
 

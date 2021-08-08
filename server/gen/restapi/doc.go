@@ -5,7 +5,7 @@
 //  Schemes:
 //    http
 //  Host: localhost
-//  BasePath: /
+//  BasePath: /gps-viewer/v1
 //  Version: 0.0.1
 //
 //  Consumes:

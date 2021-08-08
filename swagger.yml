@@ -2,11 +2,21 @@ swagger: "2.0"
 info:
   title: GPS Viewer
   version: 0.0.1
+basePath: /gps-viewer/v1
+produces:
+  - application/json
+consumes:
+  - application/json
 schemes:
   - http
+tags:
+  - name: gps
+    description: GPS情報
 paths:
   "/gqs/{deviceId}":
     get:
+      tags:
+        - gps
       description: Return device gps info
       operationId: getGpsByDeviceId
       produces:
@@ -35,6 +45,8 @@ paths:
           schema:
             "$ref": "#/definitions/Error"
     post:
+      tags:
+        - gps
       description: Register a device GPS by ID
       operationId: registerGpsByDeviceId
       consumes:
