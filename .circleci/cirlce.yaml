@@ -1,0 +1,75 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.16.6
+      - image: localstack/localstack:0.12.16
+        environment:
+          HOSTNAME_EXTERNAL: localhos
+          SERVICES: kinesis, lambda, dynamodb
+    working_directory: /go/src/github.com/montblanc18/gps-viewer
+    environment:
+      - GO11MODULE: "on"
+    steps:
+      - checkout:
+          path: /go/src/github.com/montblanc18/gps-viewer
+      - run:
+          name: Install "less" command for AWS CLI
+          command: sudo apt update && sudo apt install -yy less
+      - run:
+          name: Install AWS CLI
+          command: |
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            unzip awscliv2.zip
+            sudo ./aws/install
+      - run:
+          name: Set up AWS profile
+          command: |
+            aws configure set aws_access_key_id dummy --profile local
+            aws configure set aws_secret_access_key dummy --profile local
+            aws configure set region ap-northeast-1 --profile local
+            aws configure set cli_pager "" --profile local
+      - run:
+          name: Wait for Localstack
+          command: |
+            for i in `seq 1 10`:
+            do
+              nc -z localhost 4566 && echo Success && exit 0
+              echo -n .
+              sleep 1
+            done
+            echo Failed waiting for Localstack && exit 1
+      - run:
+          name: Test server
+          command: |
+            cd ./server
+            make test
+
+  lint-check:
+    docker:
+      - image: circleci/golang:1.16.6
+    working_directory: ~/go/src/github.com/montblanc18/gps-viewer
+    steps:
+      - checkout
+      - run:
+          name: Install GolangCI-Lint and misspell
+          command: |
+            curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.39.0
+            curl -L https://git.io/misspell | sh
+      - run:
+          name: RUn misspell-Lint (English)
+          command: |
+            find . -name '*.go' -type f | xargs ./bin/misspell -error
+      - run:
+          name: Run GolangCI-Lint server
+          when: always
+          command: |
+            cd ./server
+            golangci-lint run --tests --display-all --enable=govent --enable=errcheck --enable=staticcheck --enable=gosimple
+
+workflows:
+  workflow:
+    jobs:
+      - build
+      - lint-check
