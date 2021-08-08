@@ -18,6 +18,12 @@ var (
 
 func init() {
 	SwaggerJSON = json.RawMessage([]byte(`{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "schemes": [
     "http"
   ],
@@ -26,12 +32,16 @@ func init() {
     "title": "GPS Viewer",
     "version": "0.0.1"
   },
+  "basePath": "/gps-viewer/v1",
   "paths": {
     "/gqs/{deviceId}": {
       "get": {
         "description": "Return device gps info",
         "produces": [
           "application/json; charset=utf-8"
+        ],
+        "tags": [
+          "gps"
         ],
         "operationId": "getGpsByDeviceId",
         "parameters": [
@@ -77,6 +87,9 @@ func init() {
         ],
         "produces": [
           "application/json; charset=utf-8"
+        ],
+        "tags": [
+          "gps"
         ],
         "operationId": "registerGpsByDeviceId",
         "parameters": [
@@ -201,9 +214,21 @@ func init() {
         }
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "description": "GPS情報",
+      "name": "gps"
+    }
+  ]
 }`))
 	FlatSwaggerJSON = json.RawMessage([]byte(`{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "schemes": [
     "http"
   ],
@@ -212,12 +237,16 @@ func init() {
     "title": "GPS Viewer",
     "version": "0.0.1"
   },
+  "basePath": "/gps-viewer/v1",
   "paths": {
     "/gqs/{deviceId}": {
       "get": {
         "description": "Return device gps info",
         "produces": [
           "application/json; charset=utf-8"
+        ],
+        "tags": [
+          "gps"
         ],
         "operationId": "getGpsByDeviceId",
         "parameters": [
@@ -263,6 +292,9 @@ func init() {
         ],
         "produces": [
           "application/json; charset=utf-8"
+        ],
+        "tags": [
+          "gps"
         ],
         "operationId": "registerGpsByDeviceId",
         "parameters": [
@@ -387,6 +419,12 @@ func init() {
         }
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "description": "GPS情報",
+      "name": "gps"
+    }
+  ]
 }`))
 }
