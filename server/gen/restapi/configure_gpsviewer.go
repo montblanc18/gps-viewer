@@ -8,8 +8,8 @@ import (
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
-	"github.com/go-openapi/runtime/middleware"
 
+	"github.com/montblanc18/gps-viewer/server"
 	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer"
 	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer/gps"
 )
@@ -38,16 +38,8 @@ func configureAPI(api *gpsviewer.GpsviewerAPI) http.Handler {
 
 	api.JSONProducer = runtime.JSONProducer()
 
-	if api.GpsGetGpsByDeviceIDHandler == nil {
-		api.GpsGetGpsByDeviceIDHandler = gps.GetGpsByDeviceIDHandlerFunc(func(params gps.GetGpsByDeviceIDParams) middleware.Responder {
-			return middleware.NotImplemented("operation gps.GetGpsByDeviceID has not yet been implemented")
-		})
-	}
-	if api.GpsRegisterGpsByDeviceIDHandler == nil {
-		api.GpsRegisterGpsByDeviceIDHandler = gps.RegisterGpsByDeviceIDHandlerFunc(func(params gps.RegisterGpsByDeviceIDParams) middleware.Responder {
-			return middleware.NotImplemented("operation gps.RegisterGpsByDeviceID has not yet been implemented")
-		})
-	}
+	api.GpsGetGpsByDeviceIDHandler = gps.GetGpsByDeviceIDHandlerFunc(server.GetGpsByDeviceId)
+	api.GpsRegisterGpsByDeviceIDHandler = gps.RegisterGpsByDeviceIDHandlerFunc(server.RegisterGpsByDeviceId)
 
 	api.PreServerShutdown = func() {}
 
