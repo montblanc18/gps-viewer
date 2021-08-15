@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  build:
+  server-build:
     docker:
       - image: circleci/golang:1.16.6
       - image: localstack/localstack:0.12.16
@@ -46,7 +46,7 @@ jobs:
             cd ./server
             make test
 
-  lint-check:
+  lint-check-server:
     docker:
       - image: circleci/golang:1.16.6
     working_directory: ~/go/src/github.com/montblanc18/gps-viewer
@@ -68,8 +68,41 @@ jobs:
             cd ./server
             golangci-lint run --tests --disable-all --enable=govet --enable=errcheck --enable=staticcheck --enable=gosimple
 
+  gpsuploader:
+    docker:
+      - image: circleci/python:3.9.0
+    working_directory: ~/go/src/github.com/montblanc18/gps-viewer
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - venv-{{ .Branch }}-{{ checksum "device/gpsuploader/setup.py" }}
+            - venv-{{ .Branch }}-
+            - venv-
+      - run:
+          name: Install pip modules
+          command: |
+            cd ./device/gpsuploader
+            python -m venv .venv
+            source .venv/bin/activate
+            pip install -U pip
+            pip install -U setuptools
+            pip install -e . -r requirements.txt
+      - save_cache:
+          key: venv-{{ .Branch }}-{{ checksum "device/gpsuploader/setup.py" }}
+          paths:
+            - ".venv"
+      # tests
+      - run:
+          name: tox
+          command: |
+            cd ./device/gpsuploader
+            source .venv/bin/activate
+            tox
+
 workflows:
   workflow:
     jobs:
-      - build
-      - lint-check
+      - server-build
+      - lint-check-server
+      - gpsuploader
