@@ -89,7 +89,7 @@ jobs:
             pip install -U setuptools
             pip install -e . -r requirements.txt
       - save_cache:
-          key: venv-{{ .Branch }}-{{ checksum "setup.py" }}
+          key: venv-{{ .Branch }}-{{ checksum "device/gpsuploader/setup.py" }}
           paths:
             - ".venv"
       # tests
