@@ -1,4 +1,4 @@
-import gpsuploader.gpsuploader
+# import gpsuploader.gpsuploader
 
 
 def test_gpsuploader():
