@@ -95,7 +95,10 @@ jobs:
       # tests
       - run:
           name: tox
-          command: tox
+          command: |
+            cd ./device/gpsuploader
+            source .venv/bin/activate
+            tox
 
 workflows:
   workflow:
