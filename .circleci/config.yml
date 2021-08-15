@@ -76,7 +76,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - venv-{{ .Branch }}-{{ checksum "setup.py" }}
+            - venv-{{ .Branch }}-{{ checksum "device/gpsuploader/setup.py" }}
             - venv-{{ .Branch }}-
             - venv-
       - run:
