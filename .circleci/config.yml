@@ -73,7 +73,7 @@ jobs:
       - image: circleci/python:3.9.0
     working_directory: ~/go/src/github.com/montblanc18/gps-viewer
     steps:
-      - checkout:
+      - checkout
       - restore_cache:
           keys:
             - venv-{{ .Branch }}-{{ checksum "setup.py" }}
