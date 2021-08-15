@@ -1,0 +1,5 @@
+pytest
+tox
+black
+flake8
+mypy
