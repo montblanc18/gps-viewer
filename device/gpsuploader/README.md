@@ -45,6 +45,6 @@ $ ubus call gps info
     "elevation": "184.0",
     "course": "",
     "speed": "N"
-    "reported_at": "2021-08-06T12:34:56+09:00"
+    "recorded_at": "2021-08-06T12:34:56+09:00"
 }
 ```
