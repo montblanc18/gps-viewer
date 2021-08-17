@@ -20,6 +20,6 @@ type Payloads struct {
 	RecordedAt string `json:"recorded_at"`
 }
 
-func (u Uplink) conv(ctx context.Context) models.RegisterDeviceGPS {
-	return models.RegisterDeviceGPS{}
+func (u Uplink) conv(ctx context.Context) *models.RegisterDeviceGPS {
+	return &models.RegisterDeviceGPS{}
 }

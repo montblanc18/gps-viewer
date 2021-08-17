@@ -9,6 +9,7 @@ build: deps
 
 test:
 	export AWS_REGION=ap-northeast-1;\
+	export API_HOST=http://localhost:4566;\
 	go test -race -v ./
 
 testclean:
