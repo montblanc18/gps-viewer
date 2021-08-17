@@ -47,10 +47,12 @@ func Handle(ctx context.Context, e events.KinesisEvent) {
 			zlog.Warn().Msgf("invalid data: err=%v, payloards=%v", err, r.Kinesis.Data)
 		}
 
-		body := u.conv(ctx)
-		params := gps.NewRegisterGpsByDeviceIDParamsWithContext(ctx).WithBody(body)
-		_, err := API.Gps.RegisterGpsByDeviceID(params)
+		body, err := u.conv(ctx)
 		if err != nil {
+			zlog.Warn().Msgf("failed to conv Uplink: err=%v", err)
+		}
+		params := gps.NewRegisterGpsByDeviceIDParamsWithContext(ctx).WithBody(body)
+		if _, err = API.Gps.RegisterGpsByDeviceID(params); err != nil {
 			zlog.Warn().Msgf("failed to register GpsByDeviceID: err=%v", err)
 		}
 
