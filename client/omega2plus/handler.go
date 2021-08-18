@@ -51,7 +51,7 @@ func Handle(ctx context.Context, e events.KinesisEvent) {
 		if err != nil {
 			zlog.Warn().Msgf("failed to conv Uplink: err=%v", err)
 		}
-		params := gps.NewRegisterGpsByDeviceIDParamsWithContext(ctx).WithBody(body)
+		params := gps.NewRegisterGpsByDeviceIDParamsWithContext(ctx).WithBody(body).WithDeviceID(u.Payloads.DeviceID)
 		if _, err = API.Gps.RegisterGpsByDeviceID(params); err != nil {
 			zlog.Warn().Msgf("failed to register GpsByDeviceID: err=%v", err)
 		}

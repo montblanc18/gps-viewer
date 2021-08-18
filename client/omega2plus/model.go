@@ -42,7 +42,6 @@ func (u Uplink) conv(ctx context.Context) (*models.RegisterDeviceGPS, error) {
 	return &models.RegisterDeviceGPS{
 		Lng:        swag.Float64(lng),
 		Lat:        swag.Float64(lat),
-		DeviceID:   &u.Payloads.DeviceID,
 		DeviceType: &deviceType,
 		RecordedAt: &recordedAt,
 	}, nil
