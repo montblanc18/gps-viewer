@@ -2,8 +2,6 @@ package server
 
 import (
 	"context"
-	"os/exec"
-	"strings"
 	"testing"
 
 	"github.com/guregu/dynamo"
@@ -134,17 +132,5 @@ func TestInsertGpsById(t *testing.T) {
 				t.Errorf("insertGpsByDeviceId() = %v, want %v", got, tt.insertDeviceGps)
 			}
 		})
-	}
-}
-
-func cmdExec(t *testing.T, cmds []string) {
-	t.Helper()
-	for _, cmd := range cmds {
-		t.Logf("[INFO] %s", cmd)
-		args := strings.Split(cmd, " ")
-
-		if err := exec.Command(args[0], args[1:]...).Run(); err != nil {
-			t.Logf("[WARN] %s %v", cmd, err)
-		}
 	}
 }

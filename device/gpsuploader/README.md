@@ -46,5 +46,6 @@ $ ubus call gps info
     "course": "",
     "speed": "N"
     "recorded_at": "2021-08-06T12:34:56+09:00"
+    "device_id": "012345"
 }
 ```

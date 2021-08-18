@@ -46,7 +46,7 @@ func GetGpsByDeviceId(p gps.GetGpsByDeviceIDParams) middleware.Responder {
 func RegisterGpsByDeviceId(p gps.RegisterGpsByDeviceIDParams) middleware.Responder {
 	ctx := p.HTTPRequest.Context()
 	m := DeviceGPS{
-		DeviceID:   *p.Body.DeviceID,
+		DeviceID:   p.DeviceID,
 		DeviceType: *p.Body.DeviceType,
 		Lat:        *p.Body.Lat,
 		Lng:        *p.Body.Lng,

@@ -21,11 +21,6 @@ import (
 // swagger:model registerDeviceGPS
 type RegisterDeviceGPS struct {
 
-	// device Id
-	// Example: 99999
-	// Required: true
-	DeviceID *string `json:"deviceId"`
-
 	// device type
 	// Example: microcomputer
 	// Required: true
@@ -50,11 +45,6 @@ type RegisterDeviceGPS struct {
 // UnmarshalJSON unmarshals this object while disallowing additional properties from JSON
 func (m *RegisterDeviceGPS) UnmarshalJSON(data []byte) error {
 	var props struct {
-
-		// device Id
-		// Example: 99999
-		// Required: true
-		DeviceID *string `json:"deviceId"`
 
 		// device type
 		// Example: microcomputer
@@ -83,7 +73,6 @@ func (m *RegisterDeviceGPS) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	m.DeviceID = props.DeviceID
 	m.DeviceType = props.DeviceType
 	m.Lat = props.Lat
 	m.Lng = props.Lng
@@ -94,10 +83,6 @@ func (m *RegisterDeviceGPS) UnmarshalJSON(data []byte) error {
 // Validate validates this register device g p s
 func (m *RegisterDeviceGPS) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateDeviceID(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateDeviceType(formats); err != nil {
 		res = append(res, err)
@@ -118,15 +103,6 @@ func (m *RegisterDeviceGPS) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *RegisterDeviceGPS) validateDeviceID(formats strfmt.Registry) error {
-
-	if err := validate.Required("deviceId", "body", m.DeviceID); err != nil {
-		return err
-	}
-
 	return nil
 }
 

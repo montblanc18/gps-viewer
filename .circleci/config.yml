@@ -132,7 +132,7 @@ jobs:
           name: Run GolangCI-Lint server
           when: always
           command: |
-            cd ./server
+            cd ././client/omega2plus
             golangci-lint run --tests --disable-all --enable=govet --enable=errcheck --enable=staticcheck --enable=gosimple
 
   gpsuploader:

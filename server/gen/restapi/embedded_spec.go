@@ -183,17 +183,12 @@ func init() {
     "registerDeviceGPS": {
       "type": "object",
       "required": [
-        "deviceId",
         "deviceType",
         "lat",
         "lng",
         "recordedAt"
       ],
       "properties": {
-        "deviceId": {
-          "type": "string",
-          "example": 99999
-        },
         "deviceType": {
           "type": "string",
           "example": "microcomputer"
@@ -388,17 +383,12 @@ func init() {
     "registerDeviceGPS": {
       "type": "object",
       "required": [
-        "deviceId",
         "deviceType",
         "lat",
         "lng",
         "recordedAt"
       ],
       "properties": {
-        "deviceId": {
-          "type": "string",
-          "example": 99999
-        },
         "deviceType": {
           "type": "string",
           "example": "microcomputer"
