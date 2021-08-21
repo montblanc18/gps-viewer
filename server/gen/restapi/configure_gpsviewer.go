@@ -12,6 +12,7 @@ import (
 	"github.com/montblanc18/gps-viewer/server"
 	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer"
 	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer/gps"
+	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer/system"
 )
 
 //go:generate swagger generate server --target ../../gen --name Gpsviewer --spec ../../../swagger.yml --api-package gpsviewer --principal interface{} --exclude-main
@@ -40,6 +41,7 @@ func configureAPI(api *gpsviewer.GpsviewerAPI) http.Handler {
 
 	api.GpsGetGpsByDeviceIDHandler = gps.GetGpsByDeviceIDHandlerFunc(server.GetGpsByDeviceId)
 	api.GpsRegisterGpsByDeviceIDHandler = gps.RegisterGpsByDeviceIDHandlerFunc(server.RegisterGpsByDeviceId)
+	api.SystemGetHealthCheckHandler = system.GetHealthCheckHandlerFunc(server.GetHealthCheck)
 
 	api.PreServerShutdown = func() {}
 

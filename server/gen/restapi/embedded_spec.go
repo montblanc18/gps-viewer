@@ -130,6 +130,35 @@ func init() {
           }
         }
       }
+    },
+    "/health": {
+      "get": {
+        "description": "Health Check application/json",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "tags": [
+          "system"
+        ],
+        "operationId": "getHealthCheck",
+        "responses": {
+          "200": {
+            "description": "Health Chack",
+            "schema": {
+              "$ref": "#/definitions/OK"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -180,6 +209,14 @@ func init() {
         }
       }
     },
+    "OK": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "registerDeviceGPS": {
       "type": "object",
       "required": [
@@ -214,6 +251,10 @@ func init() {
     {
       "description": "GPS情報",
       "name": "gps"
+    },
+    {
+      "description": "システム管理用API",
+      "name": "system"
     }
   ]
 }`))
@@ -330,6 +371,35 @@ func init() {
           }
         }
       }
+    },
+    "/health": {
+      "get": {
+        "description": "Health Check application/json",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "tags": [
+          "system"
+        ],
+        "operationId": "getHealthCheck",
+        "responses": {
+          "200": {
+            "description": "Health Chack",
+            "schema": {
+              "$ref": "#/definitions/OK"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -380,6 +450,14 @@ func init() {
         }
       }
     },
+    "OK": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "registerDeviceGPS": {
       "type": "object",
       "required": [
@@ -414,6 +492,10 @@ func init() {
     {
       "description": "GPS情報",
       "name": "gps"
+    },
+    {
+      "description": "システム管理用API",
+      "name": "system"
     }
   ]
 }`))

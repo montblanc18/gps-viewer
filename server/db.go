@@ -2,7 +2,6 @@ package server
 
 import (
 	"context"
-	"fmt"
 	"os"
 
 	zlog "github.com/rs/zerolog/log"
@@ -29,7 +28,7 @@ func init() {
 
 	dbEndpoint := os.Getenv("DYNAMO_ENDPOINT")
 	if dbEndpoint != "" {
-		fmt.Printf("DYNAMO_ENDPOINT is set. %s", dbEndpoint)
+		zlog.Info().Msgf("DYNAMO_ENDPOINT is set. %s", dbEndpoint)
 		sess := session.Must(session.NewSessionWithOptions(session.Options{
 			Profile:           "local",
 			SharedConfigState: session.SharedConfigEnable,
