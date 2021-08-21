@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/go-openapi/loads"
-	"github.com/jessevdk/go-flags"
+	flags "github.com/jessevdk/go-flags"
 	"github.com/montblanc18/gps-viewer/server/gen/restapi"
 	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer"
 )
