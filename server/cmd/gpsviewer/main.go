@@ -18,7 +18,12 @@ func main() {
 
 	api := gpsviewer.NewGpsviewerAPI(swagerSpec)
 	server := restapi.NewServer(api)
-	defer server.Shutdown()
+	defer func() {
+		err := server.Shutdown()
+		if err != nil {
+			log.Fatalln(err)
+		}
+	}()
 
 	parser := flags.NewParser(server, flags.Default)
 	parser.ShortDescription = "GPS Viewer API"
