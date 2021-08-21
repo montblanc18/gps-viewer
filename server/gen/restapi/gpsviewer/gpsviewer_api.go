@@ -20,6 +20,7 @@ import (
 	"github.com/go-openapi/swag"
 
 	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer/gps"
+	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer/system"
 )
 
 // NewGpsviewerAPI creates a new Gpsviewer instance
@@ -46,6 +47,9 @@ func NewGpsviewerAPI(spec *loads.Document) *GpsviewerAPI {
 
 		GpsGetGpsByDeviceIDHandler: gps.GetGpsByDeviceIDHandlerFunc(func(params gps.GetGpsByDeviceIDParams) middleware.Responder {
 			return middleware.NotImplemented("operation gps.GetGpsByDeviceID has not yet been implemented")
+		}),
+		SystemGetHealthCheckHandler: system.GetHealthCheckHandlerFunc(func(params system.GetHealthCheckParams) middleware.Responder {
+			return middleware.NotImplemented("operation system.GetHealthCheck has not yet been implemented")
 		}),
 		GpsRegisterGpsByDeviceIDHandler: gps.RegisterGpsByDeviceIDHandlerFunc(func(params gps.RegisterGpsByDeviceIDParams) middleware.Responder {
 			return middleware.NotImplemented("operation gps.RegisterGpsByDeviceID has not yet been implemented")
@@ -88,6 +92,8 @@ type GpsviewerAPI struct {
 
 	// GpsGetGpsByDeviceIDHandler sets the operation handler for the get gps by device Id operation
 	GpsGetGpsByDeviceIDHandler gps.GetGpsByDeviceIDHandler
+	// SystemGetHealthCheckHandler sets the operation handler for the get health check operation
+	SystemGetHealthCheckHandler system.GetHealthCheckHandler
 	// GpsRegisterGpsByDeviceIDHandler sets the operation handler for the register gps by device Id operation
 	GpsRegisterGpsByDeviceIDHandler gps.RegisterGpsByDeviceIDHandler
 
@@ -169,6 +175,9 @@ func (o *GpsviewerAPI) Validate() error {
 
 	if o.GpsGetGpsByDeviceIDHandler == nil {
 		unregistered = append(unregistered, "gps.GetGpsByDeviceIDHandler")
+	}
+	if o.SystemGetHealthCheckHandler == nil {
+		unregistered = append(unregistered, "system.GetHealthCheckHandler")
 	}
 	if o.GpsRegisterGpsByDeviceIDHandler == nil {
 		unregistered = append(unregistered, "gps.RegisterGpsByDeviceIDHandler")
@@ -265,6 +274,10 @@ func (o *GpsviewerAPI) initHandlerCache() {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
 	o.handlers["GET"]["/gqs/{deviceId}"] = gps.NewGetGpsByDeviceID(o.context, o.GpsGetGpsByDeviceIDHandler)
+	if o.handlers["GET"] == nil {
+		o.handlers["GET"] = make(map[string]http.Handler)
+	}
+	o.handlers["GET"]["/health"] = system.NewGetHealthCheck(o.context, o.SystemGetHealthCheckHandler)
 	if o.handlers["POST"] == nil {
 		o.handlers["POST"] = make(map[string]http.Handler)
 	}

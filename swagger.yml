@@ -12,6 +12,8 @@ schemes:
 tags:
   - name: gps
     description: GPS情報
+  - name: system
+    description: システム管理用API
 paths:
   "/gqs/{deviceId}":
     get:
@@ -77,6 +79,25 @@ paths:
           description: Internal Server Error
           schema:
             "$ref": "#/definitions/Error"
+  "/health":
+    get:
+      tags:
+        - system
+      description: Health Check application/json
+      operationId: getHealthCheck
+      consumes:
+        - application/json
+      produces:
+        - application/json; charset=utf-8
+      responses:
+        "200":
+          description: Health Chack
+          schema:
+            "$ref": "#/definitions/OK"
+        "500":
+          description: Internal Server Error
+          schema:
+            "$ref": "#/definitions/Error"
 definitions:
   DeviceGPS:
     type: object
@@ -135,3 +156,8 @@ definitions:
       message:
         type: string
         description: エラーメッセージ
+  OK:
+    type: object
+    properties:
+      message:
+        type: string

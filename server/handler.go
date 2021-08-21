@@ -9,6 +9,7 @@ import (
 	"github.com/guregu/dynamo"
 	"github.com/montblanc18/gps-viewer/server/gen/models"
 	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer/gps"
+	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer/system"
 )
 
 func GetGpsByDeviceId(p gps.GetGpsByDeviceIDParams) middleware.Responder {
@@ -65,4 +66,10 @@ func RegisterGpsByDeviceId(p gps.RegisterGpsByDeviceIDParams) middleware.Respond
 	}
 
 	return gps.NewRegisterGpsByDeviceIDCreated().WithPayload(&models.DeviceGPS{})
+}
+
+func GetHealthCheck(p system.GetHealthCheckParams) middleware.Responder {
+	return system.NewGetHealthCheckOK().WithPayload(&models.OK{
+		Message: "Health Check OK",
+	})
 }

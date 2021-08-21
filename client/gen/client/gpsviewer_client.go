@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/montblanc18/gps-viewer/client/gen/client/gps"
+	"github.com/montblanc18/gps-viewer/client/gen/client/system"
 )
 
 // Default gpsviewer HTTP client.
@@ -56,6 +57,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Gpsviewer 
 	cli := new(Gpsviewer)
 	cli.Transport = transport
 	cli.Gps = gps.New(transport, formats)
+	cli.System = system.New(transport, formats)
 	return cli
 }
 
@@ -102,6 +104,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type Gpsviewer struct {
 	Gps gps.ClientService
 
+	System system.ClientService
+
 	Transport runtime.ClientTransport
 }
 
@@ -109,4 +113,5 @@ type Gpsviewer struct {
 func (c *Gpsviewer) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Gps.SetTransport(transport)
+	c.System.SetTransport(transport)
 }
