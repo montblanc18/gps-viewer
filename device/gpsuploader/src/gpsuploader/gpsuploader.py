@@ -1,4 +1,4 @@
-from boto import kinesis
+import boto3
 import json
 import os
 import subprocess
@@ -12,9 +12,15 @@ def get_gps(gps_cmd: str):
     return json.loads(json.dumps(t))
 
 
-def put_item(stream_name: str, gps_data, partition_key, aws_region):
-    conn = kinesis.connect_to_regison(region_name=aws_region)
-    conn.put_record(stream_name, data=gps_data, partition_key=partition_key)
+def put_item(stream_name: str, gps_data, partition_key, aws_region, endpoint_url):
+    client = boto3.Session(region_name=aws_region).client("kinesis")
+    if endpoint_url:
+        client = boto3.Session(
+            region_name=aws_region,
+            aws_access_key_id="dummy",
+            aws_secret_access_key="dummy",
+        ).client("kinesis", endpoint_url=endpoint_url)
+    client.put_record(StreamName=stream_name, Data=gps_data, PartitionKey=partition_key)
 
 
 def main():
@@ -34,8 +40,10 @@ def main():
     if gps_cmd == "":
         raise ValueError
 
+    endpoint_url = os.environ["ENDPOINT_URL"]
+
     gps_data = get_gps(gps_cmd)
-    put_item(stream_name, gps_data, partition_key, aws_region)
+    put_item(stream_name, gps_data, partition_key, aws_region, endpoint_url)
 
 
 if __name__ == "__main__":
