@@ -13,16 +13,14 @@ def get_gps(gps_cmd: str):
 
 
 def put_item(stream_name: str, gps_data, partition_key, aws_region, endpoint_url):
-    client = boto3.Session(region_name=aws_region).client('kinesis')
+    client = boto3.Session(region_name=aws_region).client("kinesis")
     if endpoint_url:
         client = boto3.Session(
             region_name=aws_region,
-            aws_access_key_id='dummy',
-            aws_secret_access_key='dummy').client('kinesis', endpoint_url=endpoint_url)
-    client.put_record(
-        StreamName=stream_name,
-        Data=gps_data,
-        PartitionKey=partition_key)
+            aws_access_key_id="dummy",
+            aws_secret_access_key="dummy",
+        ).client("kinesis", endpoint_url=endpoint_url)
+    client.put_record(StreamName=stream_name, Data=gps_data, PartitionKey=partition_key)
 
 
 def main():
@@ -42,7 +40,7 @@ def main():
     if gps_cmd == "":
         raise ValueError
 
-    endpoint_url = os.environ['ENDPOINT_URL']
+    endpoint_url = os.environ["ENDPOINT_URL"]
 
     gps_data = get_gps(gps_cmd)
     put_item(stream_name, gps_data, partition_key, aws_region, endpoint_url)

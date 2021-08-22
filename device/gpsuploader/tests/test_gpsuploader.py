@@ -13,16 +13,24 @@ def test_gpsuploader():
 
 def test_put_item():
     print()
-    stream_name = 'local_gps_omega2plus'
-    endpoint_url = 'http://localhost:4566'
-    aws_region = 'ap-northeast-1'
-    setup_cmds = ['aws kinesis --profile local create-stream --stream-name {0} --shard-count 1 --endpoint-url {1}'.format(stream_name, endpoint_url, aws_region)]
+    stream_name = "local_gps_omega2plus"
+    endpoint_url = "http://localhost:4566"
+    aws_region = "ap-northeast-1"
+    setup_cmds = [
+        "aws kinesis --profile local create-stream --stream-name {0} --shard-count 1 --endpoint-url {1}".format(
+            stream_name, endpoint_url, aws_region
+        )
+    ]
     for cmd in setup_cmds:
         print(cmd)
         os.system(cmd)
-    gpsu.put_item(stream_name, 'test_data', '123', aws_region, endpoint_url)
+    gpsu.put_item(stream_name, "test_data", "123", aws_region, endpoint_url)
 
-    end_cmds = ['aws kinesis --profile local delete-stream --stream-name {0} --endpoint-url {1}'.format(stream_name, endpoint_url, aws_region)]
+    end_cmds = [
+        "aws kinesis --profile local delete-stream --stream-name {0} --endpoint-url {1}".format(
+            stream_name, endpoint_url, aws_region
+        )
+    ]
     for cmd in end_cmds:
         print(cmd)
         os.system(cmd)
