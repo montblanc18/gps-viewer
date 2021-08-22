@@ -1,7 +1,7 @@
 pytest
 tox
 black
-boto
+boto3
 types-boto
 flake8
 mypy
