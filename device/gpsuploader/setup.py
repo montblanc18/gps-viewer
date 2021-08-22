@@ -8,7 +8,7 @@ setup(
     version=__version__,
     description="test package",
     long_description="""
-    This is test package.
+    Get GPS Info on GPS Expansion module attached Omega2Plus.
     """,
     author="Shin Kurita",
     url="https://github.com/montblanc18/gps-viewer/gpsuploader",

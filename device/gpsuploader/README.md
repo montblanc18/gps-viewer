@@ -4,7 +4,7 @@
 
 ```bash
 $ python -m venv venv
-$ pip install -r requirements.txt
+$ pip install -e . -r requirements.txt
 ```
 
 ## Development
@@ -37,7 +37,6 @@ $ ubus call gps info
 based on omega2+ gps expansion format.
 
 ```bash
-$ ubus call gps info
 {
     "age": 0,
     "latitude": "43.8616",
