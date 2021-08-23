@@ -17,7 +17,7 @@ def get_gps(gps_cmd: str):
 
 def add_record(gps_data: dict, add_key: str, add_value: str):
     retval = copy.copy(gps_data)
-    retval["recorded_at"] = ()
+    retval[add_key] = add_value
     return retval
 
 
