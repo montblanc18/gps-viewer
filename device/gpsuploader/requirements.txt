@@ -1,8 +1,10 @@
-pytest
-tox
 black
 boto3
 boto3-stubs
 types-boto
 flake8
 mypy
+pytz
+types-pytz
+pytest
+tox
