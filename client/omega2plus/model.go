@@ -32,7 +32,7 @@ func (u Uplink) conv(ctx context.Context) (*models.RegisterDeviceGPS, error) {
 	}
 	deviceType := "omega2plus"
 
-	if u.Payloads.Signal == false {
+	if !u.Payloads.Signal {
 		return &models.RegisterDeviceGPS{
 			Signal:     swag.Bool(u.Payloads.Signal),
 			DeviceType: &deviceType,
