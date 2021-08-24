@@ -40,6 +40,10 @@ type RegisterDeviceGPS struct {
 	// Required: true
 	// Format: date-time
 	RecordedAt *strfmt.DateTime `json:"recordedAt"`
+
+	// signal
+	// Required: true
+	Signal *bool `json:"signal"`
 }
 
 // UnmarshalJSON unmarshals this object while disallowing additional properties from JSON
@@ -65,6 +69,10 @@ func (m *RegisterDeviceGPS) UnmarshalJSON(data []byte) error {
 		// Required: true
 		// Format: date-time
 		RecordedAt *strfmt.DateTime `json:"recordedAt"`
+
+		// signal
+		// Required: true
+		Signal *bool `json:"signal"`
 	}
 
 	dec := json.NewDecoder(bytes.NewReader(data))
@@ -77,6 +85,7 @@ func (m *RegisterDeviceGPS) UnmarshalJSON(data []byte) error {
 	m.Lat = props.Lat
 	m.Lng = props.Lng
 	m.RecordedAt = props.RecordedAt
+	m.Signal = props.Signal
 	return nil
 }
 
@@ -97,6 +106,10 @@ func (m *RegisterDeviceGPS) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRecordedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSignal(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -140,6 +153,15 @@ func (m *RegisterDeviceGPS) validateRecordedAt(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("recordedAt", "body", "date-time", m.RecordedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *RegisterDeviceGPS) validateSignal(formats strfmt.Registry) error {
+
+	if err := validate.Required("signal", "body", m.Signal); err != nil {
 		return err
 	}
 
