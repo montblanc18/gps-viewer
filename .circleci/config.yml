@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  server-build:
+  build-server:
     docker:
       - image: circleci/golang:1.16.6
       - image: localstack/localstack:0.12.16
@@ -46,7 +46,7 @@ jobs:
             cd ./server
             make test
 
-  client-omega2plus-build:
+  build-client-omega2plus:
     docker:
       - image: circleci/golang:1.16.6
       - image: localstack/localstack:0.12.16
@@ -200,8 +200,8 @@ jobs:
 workflows:
   workflow:
     jobs:
-      - server-build
-      - client-omega2plus-build
+      - build-server
+      - build-client-omega2plus
       - lint-check-server
       - lint-check-client-omega2plus
       - gpsuploader
