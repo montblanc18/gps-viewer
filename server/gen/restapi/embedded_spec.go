@@ -169,6 +169,7 @@ func init() {
         "deviceType",
         "lat",
         "lng",
+        "signal",
         "recordedAt"
       ],
       "properties": {
@@ -193,6 +194,9 @@ func init() {
         "recordedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "signal": {
+          "type": "boolean"
         }
       }
     },
@@ -223,7 +227,8 @@ func init() {
         "deviceType",
         "lat",
         "lng",
-        "recordedAt"
+        "recordedAt",
+        "signal"
       ],
       "properties": {
         "deviceType": {
@@ -243,6 +248,9 @@ func init() {
         "recordedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "signal": {
+          "type": "boolean"
         }
       }
     }
@@ -410,6 +418,7 @@ func init() {
         "deviceType",
         "lat",
         "lng",
+        "signal",
         "recordedAt"
       ],
       "properties": {
@@ -434,6 +443,9 @@ func init() {
         "recordedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "signal": {
+          "type": "boolean"
         }
       }
     },
@@ -464,7 +476,8 @@ func init() {
         "deviceType",
         "lat",
         "lng",
-        "recordedAt"
+        "recordedAt",
+        "signal"
       ],
       "properties": {
         "deviceType": {
@@ -484,6 +497,9 @@ func init() {
         "recordedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "signal": {
+          "type": "boolean"
         }
       }
     }
