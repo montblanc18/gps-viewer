@@ -1,0 +1,22 @@
+{
+    "local_device_gps": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "device_id": {
+                        "S": "00002"
+                    },
+                    "device_type": {
+                        "S": "microcomputer"
+                    },
+                    "signal": {
+                        "BOOL": false
+                    },
+                    "recorded_at": {
+                        "S": "2021-08-08T12:34:56+09:00"
+                    }
+                }
+            }
+        }
+    ]
+}

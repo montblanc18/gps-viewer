@@ -52,6 +52,22 @@ func TestFetchGpsById(t *testing.T) {
 				`aws --profile local --endpoint-url http://localhost:4566 dynamodb batch-write-item --request-items file://./testdata/db/fetchGpsByDeviceId_1.json`,
 			},
 		},
+
+		{
+			name:     "【正常系】1レコードfalseがあるとき",
+			deviceID: "00002",
+			wantDeviceGps: DeviceGPS{
+				DeviceID:   "00002",
+				DeviceType: "microcomputer",
+				Signal:     false,
+				RecordedAt: "2021-08-08T12:34:56+09:00",
+			},
+			wantErr: nil,
+			cmds: []string{
+				`aws --profile local --endpoint-url http://localhost:4566 dynamodb create-table --cli-input-json file://./testdata/schema/local_device_gps.json`,
+				`aws --profile local --endpoint-url http://localhost:4566 dynamodb batch-write-item --request-items file://./testdata/db/fetchGpsByDeviceId_2.json`,
+			},
+		},
 		{
 			name:          "【異常系】当該データが一つもない",
 			deviceID:      "10000",

@@ -103,7 +103,7 @@ jobs:
             curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.39.0
             curl -L https://git.io/misspell | sh
       - run:
-          name: RUn misspell-Lint (English)
+          name: Run misspell-Lint (English)
           command: |
             find . -name '*.go' -type f | xargs ./bin/misspell -error
       - run:
@@ -125,7 +125,7 @@ jobs:
             curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.39.0
             curl -L https://git.io/misspell | sh
       - run:
-          name: RUn misspell-Lint (English)
+          name: Run misspell-Lint (English)
           command: |
             find . -name '*.go' -type f | xargs ./bin/misspell -error
       - run:
