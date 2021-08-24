@@ -28,6 +28,44 @@ def test_add_record():
     assert gpsu.add_record(d, key, value) == want_d
 
 
+def test_check_signal():
+    tests = [
+        {
+            "case": "signal_true",
+            "input": {
+                "age": 0,
+                "latitude": "43.8616",
+                "longitude": "-79.3854",
+                "elevation": "184.0",
+                "course": "",
+                "speed": "N",
+            },
+            "want": {
+                "age": 0,
+                "latitude": "43.8616",
+                "longitude": "-79.3854",
+                "elevation": "184.0",
+                "course": "",
+                "speed": "N",
+                "signal": "true",
+            },
+        },
+        {
+            "case": "signal_false",
+            "input": {
+                "signal": "false",
+            },
+            "want": {
+                "signal": "false",
+            },
+        },
+    ]
+    for t in tests:
+        print()
+        print("case: {0}".format(t["case"]))
+        assert gpsu.check_signal(t["input"]) == t["want"]
+
+
 def test_put_item():
     print()
     stream_name = "local_gps_omega2plus"
