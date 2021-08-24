@@ -22,7 +22,7 @@ func TestUplinkConv(t *testing.T) {
 		want models.RegisterDeviceGPS
 	}{
 		{
-			name: "正常系",
+			name: "正常系/signal true",
 			in: Uplink{
 				Payloads{
 					Age:        0,
@@ -31,13 +31,29 @@ func TestUplinkConv(t *testing.T) {
 					Elevation:  "184.0",
 					Course:     "",
 					Speed:      "N",
+					Signal:     true,
 					RecordedAt: "2021-08-06T12:34:56+09:00",
 				},
 			},
 			want: models.RegisterDeviceGPS{
 				DeviceType: &deviceType,
-				Lat:        swag.Float64(43.8616),
-				Lng:        swag.Float64(-79.3854),
+				Lat:        *swag.Float64(43.8616),
+				Lng:        *swag.Float64(-79.3854),
+				Signal:     swag.Bool(true),
+				RecordedAt: &recordedAt,
+			},
+		},
+		{
+			name: "正常系/signal false",
+			in: Uplink{
+				Payloads{
+					Signal:     false,
+					RecordedAt: "2021-08-06T12:34:56+09:00",
+				},
+			},
+			want: models.RegisterDeviceGPS{
+				DeviceType: &deviceType,
+				Signal:     swag.Bool(false),
 				RecordedAt: &recordedAt,
 			},
 		},

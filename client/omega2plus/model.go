@@ -20,11 +20,26 @@ type Payloads struct {
 	Elevation  string `json:"elevation"`
 	Course     string `json:"course"`
 	Speed      string `json:"speed"`
+	Signal     bool   `json:"signal"`
 	RecordedAt string `json:"recorded_at"`
 	DeviceID   string `json:"device_id"`
 }
 
 func (u Uplink) conv(ctx context.Context) (*models.RegisterDeviceGPS, error) {
+	recordedAt, err := strfmt.ParseDateTime(u.Payloads.RecordedAt)
+	if err != nil {
+		return &models.RegisterDeviceGPS{}, err
+	}
+	deviceType := "omega2plus"
+
+	if u.Payloads.Signal == false {
+		return &models.RegisterDeviceGPS{
+			Signal:     swag.Bool(u.Payloads.Signal),
+			DeviceType: &deviceType,
+			RecordedAt: &recordedAt,
+		}, nil
+	}
+
 	lng, err := strconv.ParseFloat(u.Payloads.Longitude, 64)
 	if err != nil {
 		return &models.RegisterDeviceGPS{}, err
@@ -34,14 +49,10 @@ func (u Uplink) conv(ctx context.Context) (*models.RegisterDeviceGPS, error) {
 	if err != nil {
 		return &models.RegisterDeviceGPS{}, err
 	}
-	recordedAt, err := strfmt.ParseDateTime(u.Payloads.RecordedAt)
-	if err != nil {
-		return &models.RegisterDeviceGPS{}, err
-	}
-	deviceType := "omega2plus"
 	return &models.RegisterDeviceGPS{
-		Lng:        swag.Float64(lng),
-		Lat:        swag.Float64(lat),
+		Lng:        *swag.Float64(lng),
+		Lat:        *swag.Float64(lat),
+		Signal:     swag.Bool(u.Payloads.Signal),
 		DeviceType: &deviceType,
 		RecordedAt: &recordedAt,
 	}, nil
