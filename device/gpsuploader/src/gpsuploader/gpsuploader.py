@@ -21,6 +21,16 @@ def add_record(gps_data: dict, add_key: str, add_value: str):
     return retval
 
 
+def check_signal(gps_data: dict):
+    retval = copy.copy(gps_data)
+    try:
+        if retval["signal"] == "false":
+            pass
+    except KeyError:
+        retval["signal"] = "true"
+    return retval
+
+
 def put_item(stream_name: str, gps_data, partition_key, aws_region, endpoint_url):
     client = boto3.Session(region_name=aws_region).client("kinesis")
     if endpoint_url:
@@ -56,8 +66,9 @@ def main():
     endpoint_url = os.environ["ENDPOINT_URL"]
 
     gps_data = get_gps(gps_cmd)
+    s = check_signal(gps_data)
     t = add_record(
-        gps_data,
+        s,
         "recorded_at",
         datetime.datetime.now().astimezone(pytz.timezone("Asia/Tokyo")).isoformat(),
     )
