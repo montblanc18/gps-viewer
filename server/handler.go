@@ -38,8 +38,9 @@ func GetGpsByDeviceId(p gps.GetGpsByDeviceIDParams) middleware.Responder {
 	return gps.NewGetGpsByDeviceIDOK().WithPayload(&models.DeviceGPS{
 		DeviceID:   &g.DeviceID,
 		DeviceType: &g.DeviceType,
-		Lat:        &g.Lat,
-		Lng:        &g.Lng,
+		Lat:        g.Lat,
+		Lng:        g.Lng,
+		Signal:     &g.Signal,
 		RecordedAt: &t,
 	})
 }
@@ -49,8 +50,9 @@ func RegisterGpsByDeviceId(p gps.RegisterGpsByDeviceIDParams) middleware.Respond
 	m := DeviceGPS{
 		DeviceID:   p.DeviceID,
 		DeviceType: *p.Body.DeviceType,
-		Lat:        *p.Body.Lat,
-		Lng:        *p.Body.Lng,
+		Lat:        p.Body.Lat,
+		Lng:        p.Body.Lng,
+		Signal:     *p.Body.Signal,
 		RecordedAt: (*p.Body.RecordedAt).String(),
 		CreatedAt:  time.Now(),
 		UpdatedAt:  time.Now(),

@@ -26,6 +26,7 @@ func TestFetchGpsById(t *testing.T) {
 				DeviceType: "microcomputer",
 				Lat:        12.345,
 				Lng:        135.12345,
+				Signal:     true,
 				RecordedAt: "2021-08-06T12:34:56+09:00",
 			},
 			wantErr: nil,
@@ -42,6 +43,7 @@ func TestFetchGpsById(t *testing.T) {
 				DeviceType: "microcomputer",
 				Lat:        13.345,
 				Lng:        136.12345,
+				Signal:     true,
 				RecordedAt: "2021-08-07T12:34:56+09:00",
 			},
 			wantErr: nil,
@@ -95,12 +97,26 @@ func TestInsertGpsById(t *testing.T) {
 		cmds            []string
 	}{
 		{
-			name: "【正常系】1レコード差し込む",
+			name: "【正常系】1レコード差し込む/signal true",
 			insertDeviceGps: DeviceGPS{
 				DeviceID:   "00000",
 				DeviceType: "microcomputer",
 				Lat:        12.345,
 				Lng:        135.12345,
+				Signal:     true,
+				RecordedAt: "2021-08-06T12:34:56+09:00",
+			},
+			wantErr: nil,
+			cmds: []string{
+				`aws --profile local --endpoint-url http://localhost:4566 dynamodb create-table --cli-input-json file://./testdata/schema/local_device_gps.json`,
+			},
+		},
+		{
+			name: "【正常系】1レコード差し込む/signal false",
+			insertDeviceGps: DeviceGPS{
+				DeviceID:   "00000",
+				DeviceType: "microcomputer",
+				Signal:     false,
 				RecordedAt: "2021-08-06T12:34:56+09:00",
 			},
 			wantErr: nil,
