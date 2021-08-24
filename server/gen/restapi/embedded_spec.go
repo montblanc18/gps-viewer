@@ -167,8 +167,6 @@ func init() {
       "required": [
         "deviceId",
         "deviceType",
-        "lat",
-        "lng",
         "signal",
         "recordedAt"
       ],
@@ -225,8 +223,6 @@ func init() {
       "type": "object",
       "required": [
         "deviceType",
-        "lat",
-        "lng",
         "recordedAt",
         "signal"
       ],
@@ -416,8 +412,6 @@ func init() {
       "required": [
         "deviceId",
         "deviceType",
-        "lat",
-        "lng",
         "signal",
         "recordedAt"
       ],
@@ -474,8 +468,6 @@ func init() {
       "type": "object",
       "required": [
         "deviceType",
-        "lat",
-        "lng",
         "recordedAt",
         "signal"
       ],

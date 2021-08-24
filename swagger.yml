@@ -104,8 +104,6 @@ definitions:
     required:
       - deviceId
       - deviceType
-      - lat
-      - lng
       - signal
       - recordedAt
     properties:
@@ -132,8 +130,6 @@ definitions:
     type: object
     required:
       - deviceType
-      - lat
-      - lng
       - recordedAt
       - signal
     properties:

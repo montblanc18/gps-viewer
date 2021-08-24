@@ -28,13 +28,11 @@ type RegisterDeviceGPS struct {
 
 	// lat
 	// Example: 34.69139
-	// Required: true
-	Lat *float64 `json:"lat"`
+	Lat float64 `json:"lat,omitempty"`
 
 	// lng
 	// Example: 135.18306
-	// Required: true
-	Lng *float64 `json:"lng"`
+	Lng float64 `json:"lng,omitempty"`
 
 	// recorded at
 	// Required: true
@@ -57,13 +55,11 @@ func (m *RegisterDeviceGPS) UnmarshalJSON(data []byte) error {
 
 		// lat
 		// Example: 34.69139
-		// Required: true
-		Lat *float64 `json:"lat"`
+		Lat float64 `json:"lat,omitempty"`
 
 		// lng
 		// Example: 135.18306
-		// Required: true
-		Lng *float64 `json:"lng"`
+		Lng float64 `json:"lng,omitempty"`
 
 		// recorded at
 		// Required: true
@@ -97,14 +93,6 @@ func (m *RegisterDeviceGPS) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateLat(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLng(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateRecordedAt(formats); err != nil {
 		res = append(res, err)
 	}
@@ -122,24 +110,6 @@ func (m *RegisterDeviceGPS) Validate(formats strfmt.Registry) error {
 func (m *RegisterDeviceGPS) validateDeviceType(formats strfmt.Registry) error {
 
 	if err := validate.Required("deviceType", "body", m.DeviceType); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *RegisterDeviceGPS) validateLat(formats strfmt.Registry) error {
-
-	if err := validate.Required("lat", "body", m.Lat); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *RegisterDeviceGPS) validateLng(formats strfmt.Registry) error {
-
-	if err := validate.Required("lng", "body", m.Lng); err != nil {
 		return err
 	}
 

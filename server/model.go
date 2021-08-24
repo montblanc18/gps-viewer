@@ -7,6 +7,7 @@ type DeviceGPS struct {
 	DeviceType string    `dynamo:"device_type"`
 	Lng        float64   `dynamo:"lng"`
 	Lat        float64   `dynamo:"lat"`
+	Signal     bool      `dynamo:"signal"`
 	RecordedAt string    `dynamo:"recorded_at"`
 	CreatedAt  time.Time `dynamo:"created_at, omitempty"`
 	UpdatedAt  time.Time `dynamo:"updated_at, omitempty"`
