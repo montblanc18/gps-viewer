@@ -1,8 +1,16 @@
 # electron-app
 
+## Requirement
+
+- ```node > 14.0.0```
+
 ## Project setup
 ```
 npm install
+
+## for mac
+# failed build fsevent if you type npm install without CXX=clang++ option
+CXX=clang++ npm install
 ```
 
 ### Compiles and hot-reloads for development
