@@ -40,7 +40,7 @@ func (o *RegisterGpsByDeviceIDURL) SetBasePath(bp string) {
 func (o *RegisterGpsByDeviceIDURL) Build() (*url.URL, error) {
 	var _result url.URL
 
-	var _path = "/gqs/{deviceId}"
+	var _path = "/gps/{deviceId}"
 
 	deviceID := o.DeviceID
 	if deviceID != "" {

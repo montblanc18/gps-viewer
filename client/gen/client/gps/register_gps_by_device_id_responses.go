@@ -60,7 +60,7 @@ type RegisterGpsByDeviceIDCreated struct {
 }
 
 func (o *RegisterGpsByDeviceIDCreated) Error() string {
-	return fmt.Sprintf("[POST /gqs/{deviceId}][%d] registerGpsByDeviceIdCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /gps/{deviceId}][%d] registerGpsByDeviceIdCreated  %+v", 201, o.Payload)
 }
 func (o *RegisterGpsByDeviceIDCreated) GetPayload() *models.DeviceGPS {
 	return o.Payload
@@ -92,7 +92,7 @@ type RegisterGpsByDeviceIDBadRequest struct {
 }
 
 func (o *RegisterGpsByDeviceIDBadRequest) Error() string {
-	return fmt.Sprintf("[POST /gqs/{deviceId}][%d] registerGpsByDeviceIdBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /gps/{deviceId}][%d] registerGpsByDeviceIdBadRequest  %+v", 400, o.Payload)
 }
 func (o *RegisterGpsByDeviceIDBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -124,7 +124,7 @@ type RegisterGpsByDeviceIDInternalServerError struct {
 }
 
 func (o *RegisterGpsByDeviceIDInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /gqs/{deviceId}][%d] registerGpsByDeviceIdInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /gps/{deviceId}][%d] registerGpsByDeviceIdInternalServerError  %+v", 500, o.Payload)
 }
 func (o *RegisterGpsByDeviceIDInternalServerError) GetPayload() *models.Error {
 	return o.Payload

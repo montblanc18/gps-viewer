@@ -48,7 +48,7 @@ func (a *Client) GetGpsByDeviceID(params *GetGpsByDeviceIDParams, opts ...Client
 	op := &runtime.ClientOperation{
 		ID:                 "getGpsByDeviceId",
 		Method:             "GET",
-		PathPattern:        "/gqs/{deviceId}",
+		PathPattern:        "/gps/{deviceId}",
 		ProducesMediaTypes: []string{"application/json; charset=utf-8"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -86,7 +86,7 @@ func (a *Client) RegisterGpsByDeviceID(params *RegisterGpsByDeviceIDParams, opts
 	op := &runtime.ClientOperation{
 		ID:                 "registerGpsByDeviceId",
 		Method:             "POST",
-		PathPattern:        "/gqs/{deviceId}",
+		PathPattern:        "/gps/{deviceId}",
 		ProducesMediaTypes: []string{"application/json; charset=utf-8"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

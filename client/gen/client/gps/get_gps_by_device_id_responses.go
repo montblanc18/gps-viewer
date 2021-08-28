@@ -66,7 +66,7 @@ type GetGpsByDeviceIDOK struct {
 }
 
 func (o *GetGpsByDeviceIDOK) Error() string {
-	return fmt.Sprintf("[GET /gqs/{deviceId}][%d] getGpsByDeviceIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /gps/{deviceId}][%d] getGpsByDeviceIdOK  %+v", 200, o.Payload)
 }
 func (o *GetGpsByDeviceIDOK) GetPayload() *models.DeviceGPS {
 	return o.Payload
@@ -98,7 +98,7 @@ type GetGpsByDeviceIDBadRequest struct {
 }
 
 func (o *GetGpsByDeviceIDBadRequest) Error() string {
-	return fmt.Sprintf("[GET /gqs/{deviceId}][%d] getGpsByDeviceIdBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /gps/{deviceId}][%d] getGpsByDeviceIdBadRequest  %+v", 400, o.Payload)
 }
 func (o *GetGpsByDeviceIDBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -130,7 +130,7 @@ type GetGpsByDeviceIDNotFound struct {
 }
 
 func (o *GetGpsByDeviceIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /gqs/{deviceId}][%d] getGpsByDeviceIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /gps/{deviceId}][%d] getGpsByDeviceIdNotFound  %+v", 404, o.Payload)
 }
 func (o *GetGpsByDeviceIDNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -162,7 +162,7 @@ type GetGpsByDeviceIDInternalServerError struct {
 }
 
 func (o *GetGpsByDeviceIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /gqs/{deviceId}][%d] getGpsByDeviceIdInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /gps/{deviceId}][%d] getGpsByDeviceIdInternalServerError  %+v", 500, o.Payload)
 }
 func (o *GetGpsByDeviceIDInternalServerError) GetPayload() *models.Error {
 	return o.Payload
