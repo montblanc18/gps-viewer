@@ -273,7 +273,7 @@ func (o *GpsviewerAPI) initHandlerCache() {
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
-	o.handlers["GET"]["/gqs/{deviceId}"] = gps.NewGetGpsByDeviceID(o.context, o.GpsGetGpsByDeviceIDHandler)
+	o.handlers["GET"]["/gps/{deviceId}"] = gps.NewGetGpsByDeviceID(o.context, o.GpsGetGpsByDeviceIDHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
@@ -281,7 +281,7 @@ func (o *GpsviewerAPI) initHandlerCache() {
 	if o.handlers["POST"] == nil {
 		o.handlers["POST"] = make(map[string]http.Handler)
 	}
-	o.handlers["POST"]["/gqs/{deviceId}"] = gps.NewRegisterGpsByDeviceID(o.context, o.GpsRegisterGpsByDeviceIDHandler)
+	o.handlers["POST"]["/gps/{deviceId}"] = gps.NewRegisterGpsByDeviceID(o.context, o.GpsRegisterGpsByDeviceIDHandler)
 }
 
 // Serve creates a http handler to serve the API over HTTP

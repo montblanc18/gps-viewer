@@ -29,7 +29,7 @@ func NewRegisterGpsByDeviceID(ctx *middleware.Context, handler RegisterGpsByDevi
 	return &RegisterGpsByDeviceID{Context: ctx, Handler: handler}
 }
 
-/* RegisterGpsByDeviceID swagger:route POST /gqs/{deviceId} gps registerGpsByDeviceId
+/* RegisterGpsByDeviceID swagger:route POST /gps/{deviceId} gps registerGpsByDeviceId
 
 Register a device GPS by ID
 

@@ -29,7 +29,7 @@ func NewGetGpsByDeviceID(ctx *middleware.Context, handler GetGpsByDeviceIDHandle
 	return &GetGpsByDeviceID{Context: ctx, Handler: handler}
 }
 
-/* GetGpsByDeviceID swagger:route GET /gqs/{deviceId} gps getGpsByDeviceId
+/* GetGpsByDeviceID swagger:route GET /gps/{deviceId} gps getGpsByDeviceId
 
 Return device gps info
 

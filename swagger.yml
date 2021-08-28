@@ -15,7 +15,7 @@ tags:
   - name: system
     description: システム管理用API
 paths:
-  "/gqs/{deviceId}":
+  "/gps/{deviceId}":
     get:
       tags:
         - gps

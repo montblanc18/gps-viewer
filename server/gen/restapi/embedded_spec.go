@@ -34,7 +34,7 @@ func init() {
   },
   "basePath": "/gps-viewer/v1",
   "paths": {
-    "/gqs/{deviceId}": {
+    "/gps/{deviceId}": {
       "get": {
         "description": "Return device gps info",
         "produces": [
@@ -279,7 +279,7 @@ func init() {
   },
   "basePath": "/gps-viewer/v1",
   "paths": {
-    "/gqs/{deviceId}": {
+    "/gps/{deviceId}": {
       "get": {
         "description": "Return device gps info",
         "produces": [
