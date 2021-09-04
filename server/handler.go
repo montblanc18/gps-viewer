@@ -10,7 +10,14 @@ import (
 	"github.com/montblanc18/gps-viewer/server/gen/models"
 	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer/gps"
 	"github.com/montblanc18/gps-viewer/server/gen/restapi/gpsviewer/system"
+	"github.com/rs/zerolog"
+	zlog "github.com/rs/zerolog/log"
 )
+
+func init() {
+	zerolog.SetGlobalLevel(zerolog.DebugLevel)
+
+}
 
 func GetGpsByDeviceId(p gps.GetGpsByDeviceIDParams) middleware.Responder {
 
@@ -57,7 +64,7 @@ func RegisterGpsByDeviceId(p gps.RegisterGpsByDeviceIDParams) middleware.Respond
 		CreatedAt:  time.Now(),
 		UpdatedAt:  time.Now(),
 	}
-
+	zlog.Info().Msgf("data=%v", m)
 	// TODO: 400のケースを作る/validationチェック
 
 	if err := insertGpsByDevice(ctx, m); err != nil {

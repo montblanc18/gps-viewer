@@ -14,3 +14,6 @@ test:
 
 testclean:
 	go clean -testcache
+
+zip: build
+	zip -j bin/lambda.zip bin/lambda
