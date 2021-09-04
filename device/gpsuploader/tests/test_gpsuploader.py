@@ -1,8 +1,19 @@
 import copy
 import json
 import os
+import time
+import subprocess
 
 import gpsuploader.gpsuploader as gpsu
+
+
+def call_command(commands):
+    cmd = []
+    for command in commands:
+        cmd.append(command)
+    subprocess.call(cmd)
+    output = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+    return output.communicate()[0]
 
 
 def test_getgps():
@@ -75,12 +86,25 @@ def test_put_item():
     aws_secret_access_key = "dummy"
     setup_cmds = [
         "aws kinesis --profile local create-stream --stream-name {0} --shard-count 1 --endpoint-url {1}".format(
-            stream_name, endpoint_url, aws_region
+            stream_name, endpoint_url
         )
     ]
     for cmd in setup_cmds:
         print(cmd)
         os.system(cmd)
+    # wait for localstack kinesis ACTIVE
+    wait_cmd = "aws kinesis --profile local describe-stream --stream-name {0} --endpoint-url {1}".format(
+        stream_name, endpoint_url
+    )
+
+    for i in range(10):
+        print(wait_cmd)
+        jsons = call_command(wait_cmd.split(" "))
+        s = json.loads(jsons)
+        if "ACTIVE" == s["StreamDescription"]["StreamStatus"]:
+            break
+        time.sleep(1)
+
     gpsu.put_item(
         stream_name,
         "test_data",
