@@ -44,7 +44,7 @@ func Handle(ctx context.Context, e events.KinesisEvent) {
 	for _, r := range e.Records {
 		var u Uplink
 		if err := json.Unmarshal(r.Kinesis.Data, &u); err != nil {
-			zlog.Warn().Msgf("invalid data: err=%v, payloards=%v", err, r.Kinesis.Data)
+			zlog.Warn().Msgf("invalid data: err=%v, payloards=%v", err, string(r.Kinesis.Data))
 		}
 
 		body, err := u.conv(ctx)
